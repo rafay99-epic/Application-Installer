@@ -19,7 +19,8 @@ In order to download Enterprise Architecture we need a setup and the set must be
 https://drive.google.com/drive/folders/1w3pj9jpArEiVlvhlBgcAatENPQebaPRo?usp=sharing  
 The setup file must be in download folder so that it can find the file and start installing the  program.
 
-contact Information:
+Contact Information:
 ====================
+
 Name: Abdul Rafay
 Email: 99marafay@gmail.com

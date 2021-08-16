@@ -302,7 +302,7 @@ function All_Application()
 }
 function Arch_System
 {
-    txtback = "Yes"
+    txtback = "Yes";
     while :; do
         ADVSEL=$(whiptail --title "Application Installer for Arch System" --fb --menu "Choose an option" --cancel-button "${txtback}Back" 25 60 15 \
             "1" "Update Arch system" \

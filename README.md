@@ -5,7 +5,7 @@ Installment Method:
 ====================
 1) In order to download the script visit the github page.
 2) Once the files are downloaded enter thr following command in the terminal
-3) sudo ./Application_nstaller.sh
+3) sudo ./Application_Installer_Improved.sh
 
 Working:
 =========

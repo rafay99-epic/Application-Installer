@@ -43,7 +43,7 @@ function check_root()
     fi
 }
 #this will install snap store and Flatpak store for arch system
-function install_store_arch()
+function install_store()
 {
     #this commad will install snap store on this system
     sudo pacman -S snapd

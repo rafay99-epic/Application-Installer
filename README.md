@@ -34,7 +34,13 @@ All of these application can be downloaded one by one or all at the same time as
 
 ## Installment:
 
-In order to install this application you need to enter just one command in the terminal 
+In order to install this application you need to enter the command in the terminal 
+
+
+```bash
+chmod a+x install.sh
+```
+The enter the next command stated bellow:
 
 ```bash
 sudo ./install.sh

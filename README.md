@@ -37,7 +37,7 @@ All of these application can be downloaded one by one or all at the same time as
 In order to install this application you need to enter just one command in the terminal 
 
 ```bash
-sudo ./Application_Installer_Improved.sh
+sudo ./install.sh
 ```
 
 This Application will run the GUI and and then with easy Menu layout you can download different application with just one click which can be 'yes' or 'no'

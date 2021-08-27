@@ -26,7 +26,67 @@ At this time there are only 15  application which you can be downloaded and thes
 
 All of these application can be downloaded one by one or all at the same time as well.
 
+## Requirements for Installment:
 
+### **1) Git Clone:**
+
+You must have git clone installed on your system. In order to install git clone enter the following command in the terminal
+
+**For Arch System:**
+
+`sudo pacman -S git`
+
+**For Debian System:**
+
+`sudo apt-get install git`
+
+Once git is installed on your system then move to the next steps
+
+### **2) Curl:**
+
+You must have Curl on your system as well to install curl enter the following command.
+
+**For Debian Systems:**
+
+`sudo apt-get install curl`
+
+**For Arch System:**
+
+`sudo pacman -Sy curl`
+
+### **Downloading Files for GitHub:**
+
+In order download files from github enter the following the command in the terminal
+
+`git clone https://github.com/rafay99-epic/Application-Installer-for-Linux-.git`
+
+All of the files will be download and saved in your home directory.
+
+**Note:** If you want to change the location of 
+downloaded file go to that section and then open the location in your 
+terminal and then enter the same command stated above.
+
+### **Accessing the Files:**
+
+Now enter the command to enter the folder
+
+`cd 'Application-Installer-for-Linux-'`
+
+Once You are in the folder then enter the command
+
+### **Changing Permission:**
+
+This command will give permission so that the application can run on you system.
+
+`chmod +x startup.sh`
+
+Now Enter the following command
+
+### **Running the Application:**
+
+`sudo ./startup.sh`
+
+Once the above command is enter the application will check for internet and once checked it will launch the application.
 
 This Application will run the GUI and and then with easy Menu layout you can download different application with just one click which can be 'yes' or 'no'
 

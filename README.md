@@ -26,49 +26,7 @@ At this time there are only 15  application which you can be downloaded and thes
 
 All of these application can be downloaded one by one or all at the same time as well.
 
-# Installment Guide:
 
-In this update there are more then one files and these file name are given bellow:
-
-1. install.sh
-2. Arch_System.sh
-3. Debian_System.sh
-
-### Important Note:
-
-All these three files are important if any one is lost then the program will not run and through an error.
-
-Enter the following Command to make sure that all these can be run on your Computer
-
-### **Giving Permission:**
-
-These command with make the file executable all three files must be executable if any of these files are not executable then the script will not run or load into the terminal.
-
-### For install.sh file:
-
-```bash
-chmod +x install.sh
-```
-
-### For Debian System File:
-
-```bash
-chmod a+x Debian_System.sh
-```
-
-### For Arch System File:
-
-```bash
-chmod a+x Arch_System.sh
-```
-
-### Run Application:
-
-These above command will give permission to the files and now to run the application enter the following command
-
-```bash
-sudo ./install.sh
-```
 
 This Application will run the GUI and and then with easy Menu layout you can download different application with just one click which can be 'yes' or 'no'
 

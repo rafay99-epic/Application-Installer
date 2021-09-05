@@ -29,42 +29,6 @@ All of these application can be downloaded one by one or all at the same time as
  Installment Guide:
 ================
 
-Requirements for Installment:
------------------------------------------
-### **1) Git Clone:**
-
-You must have git clone installed on your system. In order to install git clone enter the following command in the terminal
-
-**For Arch System:**
-
-```bash
-sudo pacman -S git
-```
-
-**For Debian System:**
-
-```bash
-sudo apt-get install git
-```
-
-Once git is installed on your system then move to the next steps
-
-### **2) Curl:**
-
-You must have Curl on your system as well to install curl enter the following command.
-
-**For Debian Systems:**
-
-```bash
-sudo apt-get install curl
-```
-
-**For Arch System:**
-
-```bash
-sudo pacman -Sy curl
-```
-
 ### **Downloading Files for GitHub:**
 
 In order download files from github enter the following the command in the terminal

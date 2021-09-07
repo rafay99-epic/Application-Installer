@@ -255,7 +255,7 @@ function Debian_system()
 {
     txtback='Yes';
     while :; do
-        ADVSEL=$(whiptail --title "Application Installer for Debianed System" --fb --menu "Choose an option" --cancel-button "${txtback} Back" 25 60 15 \
+        ADVSEL=$(whiptail --title "Application Installer for Debian System" --fb --menu "Choose an option" --cancel-button "${txtback} Back" 25 60 15 \
             "1" "Update Debian system" \
             "2" "Install Java JDK" \
             "3" "Install Netbeans" \

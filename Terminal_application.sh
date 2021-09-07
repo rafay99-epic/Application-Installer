@@ -8,21 +8,46 @@
 
 #This File will contain all of the Application 
 
+declare -A osInfo;
+osInfo[/etc/debian_version]="apt-get"
+osInfo[/etc/alpine-release]="apk"
+osInfo[/etc/centos-release]="yum"
+osInfo[/etc/fedora-release]="dnf"
+osInfo[/etc/arch-release]="pacman"
+
+
 #this is the location for the snap store files
 FILE=/var/lib/snapd/snaps
 
 function install_store()
 {
-    #this commad will install snap store on this system
-    sudo pacman -S snapd
-    sudo systemctl enable --now snapd.socket
-    sudo ln -s /var/lib/snapd/snap /snap
+    for f in ${!osInfo[@]}
+    do
+        if [[ -f $f ]];then
+         package_manager=${osInfo[$f]}
+        fi
+    done
+       
+    if [[ "$package_manager" == "pacman" ]];
+    then
+         #this commad will install snap store on this system
+        sudo pacman -S snapd
+        sudo systemctl enable --now snapd.socket
+        sudo ln -s /var/lib/snapd/snap /snap
+       # echo 'program is working'
+    elif [[ "$package_manager" == "apt-get" ]];
+    then 
+        sudo apt install snapd
+        sudo snap install snap-store
+    else
+        echo 'System is Not Supported!!'
+        exit 0
+    fi
 }
 
 # gdu is a disk analyzier
 function install_gdu()
 {
-    
     if [ -e "$FILE" ]; 
     then
         sudo  snap install gdu-disk-usage-analyzer
@@ -53,14 +78,29 @@ function install_lsd()
         whiptail --title "lsd" --msgbox "lsd is Installed." 8 45;
     fi
 }
-function install_git_arch()
+function install_git()
 {
-    sudo pacman -S git
-    whiptail --title "Git Clone" --msgbox "Git Clone is Installed." 8 45;
-}
-function install_git_debian()
-{
-    echo "Hello git clone for debian";
+    for f in ${!osInfo[@]}
+    do
+        if [[ -f $f ]];then
+         package_manager=${osInfo[$f]}
+        fi
+    done
+       
+    if [[ "$package_manager" == "pacman" ]];
+    then
+       sudo pacman -S git
+       whiptail --title "Git Clone" --msgbox "Git Clone is Installed." 8 45;
+       # echo 'program is working'
+    elif [[ "$package_manager" == "apt-get" ]];
+    then 
+        sudo apt install git
+        whiptail --title "Git Clone" --msgbox "Git Clone is Installed." 8 45;
+    else
+        whiptail --title "Git Clone" --msgbox "Git Clone is not Installed." 8 45;
+    fi
+
+    
 }    
 function install_htop()
 {
@@ -100,15 +140,28 @@ function install_PowersaveMode()
     fi
     
 }
-function install_Curl_arch()
+function install_Curl()
 {
-    sudo pacman -Sy curl
-    whiptail --title "CURL" --msgbox "CURL is Installed." 8 45;
+    for f in ${!osInfo[@]}
+    do
+        if [[ -f $f ]];then
+         package_manager=${osInfo[$f]}
+        fi
+    done
+       
+    if [[ "$package_manager" == "pacman" ]];
+    then
+        sudo pacman -Sy curl
+        whiptail --title "CURL" --msgbox "CURL is Installed." 8 45;
+       # echo 'program is working'
+    elif [[ "$package_manager" == "apt-get" ]];
+    then 
+        sudo apt install curl
+        whiptail --title "CURL" --msgbox "CURL is Installed." 8 45;
+    else
+        whiptail --title "CURL" --msgbox "CURL is Installed." 8 45;
+    fi
 }
-#function install_curl_debian()
-# {
-        #echo "Curl for the debian System";
-#}
 function All_terminal_Application()
 {
     install_gdu
@@ -138,7 +191,7 @@ htop: Htop is an interactive system monitor, process viewer and process manager 
     
 Neofetch is a super-convenient command-line utility used to fetch system information within a few seconds. It is cross-platform, open-source, and it displays everything ranging from your system’s uptime to the Linux kernel version. This guide will explain the working of Neofetch, its features, and the method of installing it.
 
-CPU Frequence Changer\ Power Saver: Automatic CPU speed & power optimizer for Linux based on active monitoring of laptop's battery state, CPU usage, CPU temperature and system load. Ultimately allowing you to improve battery life without making any compromises." 45 100;
+CPU Frequence Changer Power Saver: Automatic CPU speed & power optimizer for Linux based on active monitoring of laptop's battery state, CPU usage, CPU temperature and system load. Ultimately allowing you to improve battery life without making any compromises." 45 100;
 
 
 }

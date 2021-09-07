@@ -9,12 +9,12 @@
 
 
 #this will call the arch_System.sh file and all of the function will called in this script
-function terminal_application_menu_arch
+function terminal_application_menu_arch()
 {
     decide='Yes';
     while :; do
         
-        ADVSEL=$(whiptail --title "Terminal Application Installer for Arch System" --fb --menu "Choose an option" --cancel-button "${decide} Back" 25 60 15 \
+        ADVSEL=$(whiptail --title "Terminal Application Installer" --fb --menu "Choose an option" --cancel-button "${decide} Back" 25 60 15 \
             "1" "Install gdu" \
             "2" "Install lsd" \
             "3" "Install git-clone" \
@@ -46,7 +46,7 @@ function terminal_application_menu_arch
             3)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install Git?." 10 60) 
                 then
-                    install_git_arch
+                    install_git
                     terminal_application_menu_arch
                 else
                     whiptail --title "Git" --msgbox "Git is not Installed" 8 45;
@@ -82,7 +82,7 @@ function terminal_application_menu_arch
             7)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install Curl?." 10 60) 
                 then
-                    install_Curl_arch
+                    install_Curl
                     terminal_application_menu_arch
                 else
                     whiptail --title "Curl" --msgbox "Curl is not Installed" 8 45;
@@ -107,9 +107,43 @@ function terminal_application_menu_arch
         esac
         if(decide=="Yes")
         then
-            . Controller_ChoiceMenu_Arch.sh
-            controller_arch_system
+          #  . Controller_ChoiceMenu_Arch.sh
+          #  controller_arch_system
+            return_option
         fi
     done 
+}
+function return_option()
+{
+    declare -A osInfo;
+    osInfo[/etc/debian_version]="apt-get"
+    osInfo[/etc/alpine-release]="apk"
+    osInfo[/etc/centos-release]="yum"
+    osInfo[/etc/fedora-release]="dnf"
+    osInfo[/etc/arch-release]="pacman"
+    
+    for f in ${!osInfo[@]}
+    do
+        if [[ -f $f ]];then
+            package_manager=${osInfo[$f]}
+        fi
+    done
+       
+    if [[ "$package_manager" == "pacman" ]];
+    then
+        . Controller_ChoiceMenu_Arch.sh
+        controller_arch_system
+        #startup
+       # echo 'program is working'
+    elif [[ "$package_manager" == "apt-get" ]];
+    then 
+       . Controller_Choice_Menu_Debian_System.sh
+       controller_debian_system
+        #echo 'system is debian'
+    else
+        echo 'System is Not Supported!!'
+        exit 0
+    fi
+
 }
 terminal_application_menu_arch

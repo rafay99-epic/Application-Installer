@@ -72,8 +72,10 @@ function choice_Menu()
                 2)
                     if (whiptail --title "Alert!!" --yesno "Are you sure your system is Debian Linux?." 10 60) 
                     then
-                        . Debian_System.sh
-                        Debian_system
+                        . Controller_Choice_Menu_Debian_System.sh
+                        controller_debian_system
+                      #  . Debian_System.sh
+                     #   Debian_system
                         #Debian_system
                     else
                         whiptail --title "Alert!!" --msgbox "Choose Again!!!" 8 45;

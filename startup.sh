@@ -13,9 +13,26 @@ osInfo[/etc/centos-release]="yum"
 osInfo[/etc/fedora-release]="dnf"
 osInfo[/etc/arch-release]="pacman"
 
+#to check the root access
+#application will not run without root access
+function check_root()
+{
+    #this will check for root
+    ROOT_UID=0
+    if [[ ! "${UID}" -eq "${ROOT_UID}" ]]; then
+        # Error message 
+        whiptail --msgbox --title "ALert!!" "Run me as root, Try sudo ./startup.sh" 20 78;
+       # echo_error 'Run me as root.';
+       # echo_info 'try sudo ./install.sh';
+        exit 1
+    fi
+}
 #this function will check and will install the two necessary packages curl and git once installed it will run start the application.
 function install_important_compoent()
 {
+    #this will check for the root access
+    check_root
+
     for f in ${!osInfo[@]}
     do
         if [[ -f $f ]];then
@@ -27,7 +44,7 @@ function install_important_compoent()
     then
         install_git_arch
         install_curl_arch
-        startup
+        #startup
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
@@ -50,11 +67,26 @@ function install_curl_debian_system()
 }
 function install_git_arch()
 {
-    sudo pacman -S git
+   FILE=/bin
+    if [ -f "$FILE" ]; 
+    then
+      #  echo "$FILE is a directory."
+        startup
+    else
+        sudo pacman -S git
+        startup
+    fi
 }
 function install_curl_arch()
 {
-    sudo pacman -Sy curl
+    FILE=/usr/bin/curl-config
+    if [ -f "$FILE" ]; then
+        echo "$FILE exists."
+        startup
+    else
+        sudo pacman -Sy curl
+        startup
+    fi  
 }
 function give_permission()
 {
@@ -66,6 +98,7 @@ function give_permission()
     chmod +x Controller_ChoiceMenu_Arch.sh
     chmod +x Terminal_application.sh
     chmod +x Terminal_application_Menu_For_Arch.sh
+    chmod +x Controller_Choice_Menu_Debian_System.sh
     
 }
 function remove_Permisiion()
@@ -78,10 +111,14 @@ function remove_Permisiion()
     chmod -x Controller_ChoiceMenu_Arch.sh
     chmod -x Terminal_application.sh
     chmod -x Terminal_application_Menu_For_Arch.sh
+    chmod -x Controller_Choice_Menu_Debian_System.sh
 }
 #this is the starting point of the application
 function startup()
 {
+    #this will check for root access if root is not present then it will ext the application
+    check_root
+
     #this will call a function and will provide all of the required permission
     give_permission
 

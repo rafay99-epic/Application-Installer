@@ -5,19 +5,19 @@
 # * Email: 99marafay@gmail.com
 # */
 
-function controller_arch_system()
+function controller_debian_system()
 {
     while :; do
-        ADVSEL=$(whiptail --title "Choose Application Installer for Arch System" --fb --menu "Choose an option" --cancel-button "${textexit} Back" 25 60 15 \
+        ADVSEL=$(whiptail --title "Choose Application Installer for Debian System" --fb --menu "Choose an option" --cancel-button "${textexit} Back" 25 60 15 \
                 "1" "Install GUI Application" \
                 "2" "Install Terminal Based Application (Programs)"  3>&1 1>&2 2>&3)
             case $ADVSEL in
                 1)
                     if (whiptail --title "Alert!!" --yesno "Are you sure?." 10 60) 
                     then        
-                        # Arch System Application will be called
-                        . Arch_System.sh
-                        Arch_System
+                        # Debian System Application will be called
+                        . Debian_System.sh
+                        Debian_system
                     else
                         whiptail --title "Alert!!" --msgbox "Choose Again!!!" 8 45;
                         controller_arch_system
@@ -38,7 +38,7 @@ function controller_arch_system()
                         #PREVIOUS CODE
 
                         whiptail --title "Alert!!" --msgbox "Choose Again!!!" 8 45;
-                        controller_arch_system
+                        controller_debian_system
 
                         # NEW CODE:
 
@@ -58,4 +58,4 @@ function controller_arch_system()
          fi
     done
 }
-controller_arch_system
+

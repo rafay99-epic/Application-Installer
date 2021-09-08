@@ -116,14 +116,25 @@ function install_htop()
 }
 function install_neofetch()
 {
-    if [ -e "$FILE" ]; 
+   for f in ${!osInfo[@]}
+    do
+        if [[ -f $f ]];then
+         package_manager=${osInfo[$f]}
+        fi
+    done
+       
+    if [[ "$package_manager" == "pacman" ]];
     then
-        sudo snap install neofetch --beta
+       sudo pacman -S neofetch
+       whiptail --title "Neofetch" --msgbox "Neofetch is Installed." 8 45;
+       # echo 'program is working'
+    elif [[ "$package_manager" == "apt-get" ]];
+    then 
+        sudo apt-get update
+        sudo apt-get install neofetch
         whiptail --title "Neofetch" --msgbox "Neofetch is Installed." 8 45;
-    else 
-        install_store
-       sudo snap install neofetch --beta
-        whiptail --title "Neofetch" --msgbox "Neofetch is Installed." 8 45;
+    else
+        whiptail --title "Neofetch" --msgbox "Neofetch not is Installed." 8 45;
     fi
     
 }

@@ -59,10 +59,12 @@ function install_important_compoent()
 }
 function install_git_debian_system()
 {
+    sudo apt-get update
     sudo apt-get install git
 }
 function install_curl_debian_system()
 {
+    sudo apt-get update
     sudo apt-get install curl
 }
 function install_git_arch()

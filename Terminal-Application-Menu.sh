@@ -131,14 +131,13 @@ function return_option()
        
     if [[ "$package_manager" == "pacman" ]];
     then
-        . Controller_ChoiceMenu_Arch.sh
-        controller_arch_system
-        #startup
-       # echo 'program is working'
+        . controller_Menu.sh
+        controller_Menu
+        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-       . Controller_Choice_Menu_Debian_System.sh
-       controller_debian_system
+       . controller_Menu.sh
+        controller_Menu
         #echo 'system is debian'
     else
         echo 'System is Not Supported!!'

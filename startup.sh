@@ -112,41 +112,45 @@ function give_permission()
     # Giving the executable permission
     chmod +x check_Internet.sh
     chmod +x Terminal_application.sh
-    chmod +x Terminal_application_Menu_For_Arch.sh
+    chmod +x Terminal-Application-Menu.sh
     chmod +x controller_Menu.sh
     chmod +x GUI_Application.sh
     chmod +x GUI_Meun.sh
     chmod +x choose_Distro.sh
+    chmod +x splash.sh
 }
 function remove_Permisiion()
 {
     # removing Permission
     chmod -x check_Internet.sh
     chmod -x Terminal_application.sh
-    chmod -x Terminal_application_Menu_For_Arch.sh
+    chmod -x Terminal-Application-Menu.sh
     chmod -x controller_Menu.sh
     chmod -x GUI_Application.sh
     chmod -x GUI_Meun.sh
     chmod -x choose_Distro.sh
+    chmod -x splash.sh
 }
 
 function check_Files()
 {
-   if [[ -f check_Internet.sh && -f GUI_Application.sh && -f GUI_Meun.sh && -f choose_Distro.sh && -f controller_Menu.sh && -f Terminal_application.sh && -f Terminal_application_Menu_For_Arch.sh  ]]; 
+   if [[ -f check_Internet.sh && -f GUI_Application.sh && -f GUI_Meun.sh && -f choose_Distro.sh && -f controller_Menu.sh && -f Terminal_application.sh && -f Terminal-Application-Menu.sh  ]]; 
    then
         echo ''
-        splash 'Appl Files are Present'
+        splash 'All Files are Present'
+        echo ''
         #echo "All Files Exit"
     else
         splash 'Files are not Present, Download all of the Files!!'
         echo 'Some Files are missing'
         echo 'Download all of the Files!!!'
+        exit 1
     fi
 }
 
 function startup_message()
 {
-        splash 'Welcome To Application Installer for Linux
+    splash 'Welcome To Application Installer for Linux
     Name: Mohammad Abdul Rafay 
     Email: 99marafay@gmail.com'
     echo ''

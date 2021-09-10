@@ -19,8 +19,19 @@ osInfo[/etc/arch-release]="pacman"
 #this is the location for the snap store files
 FILE=/var/lib/snapd/snaps
 
+#to find which OS is this 
+for f in ${!osInfo[@]}
+    do
+        if [[ -f $f ]];then
+         package_manager=${osInfo[$f]}
+        fi
+    done
+
 function install_store()
 {
+    . splash.sh
+    splash 'Install Snap Store'
+    echo ''
     for f in ${!osInfo[@]}
     do
         if [[ -f $f ]];then
@@ -49,11 +60,14 @@ function install_store()
 function install_gdu()
 {
     if [ -e "$FILE" ]; 
-    then
+    then        
         sudo  snap install gdu-disk-usage-analyzer
         sudo snap connect gdu-disk-usage-analyzer:mount-observe :mount-observe
         sudo snap connect gdu-disk-usage-analyzer:system-backup :system-backup
         sudo snap alias gdu-disk-usage-analyzer.gdu gdu
+        . splash.sh
+        splash 'gdu is Installed'
+        echo ''
         whiptail --title "GDU Disk Analyizer" --msgbox "GDU Disk Analyizer is Installed." 8 45;
     else 
         install_store
@@ -61,6 +75,9 @@ function install_gdu()
         sudo snap connect gdu-disk-usage-analyzer:mount-observe :mount-observe
         sudo snap connect gdu-disk-usage-analyzer:system-backup :system-backup
         sudo snap alias gdu-disk-usage-analyzer.gdu gdu
+        . splash.sh
+        splash 'gdu is Installed'
+        echo ''
         whiptail --title "GDU Disk Analyizer" --msgbox "GDU Disk Analyizer is Installed." 8 45;
     fi
 }
@@ -71,30 +88,35 @@ function install_lsd()
     if [ -e "$FILE" ]; 
     then
         sudo snap install lsd
+        . splash.sh
+        splash 'lsd is Installed'
+        echo ''
         whiptail --title "lsd" --msgbox "lsd is Installed." 8 45;
     else 
         install_store
         sudo snap install lsd
+        . splash.sh
+        splash 'lsd is Installed'
+        echo ''
         whiptail --title "lsd" --msgbox "lsd is Installed." 8 45;
     fi
 }
 function install_git()
-{
-    for f in ${!osInfo[@]}
-    do
-        if [[ -f $f ]];then
-         package_manager=${osInfo[$f]}
-        fi
-    done
-       
+{      
     if [[ "$package_manager" == "pacman" ]];
     then
        sudo pacman -S git
+       . splash.sh
+        splash 'git is Installed'
+        echo ''
        whiptail --title "Git Clone" --msgbox "Git Clone is Installed." 8 45;
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
         sudo apt install git
+        . splash.sh
+        splash 'git is Installed'
+        echo ''
         whiptail --title "Git Clone" --msgbox "Git Clone is Installed." 8 45;
     else
         whiptail --title "Git Clone" --msgbox "Git Clone is not Installed." 8 45;
@@ -107,31 +129,36 @@ function install_htop()
     if [ -e "$FILE" ]; 
     then
         sudo snap install htop
+        . splash.sh
+        splash 'htop is Installed'
+        echo ''
         whiptail --title "htop" --msgbox "htop is Installed." 8 45;
     else 
         install_store
         sudo snap install htop
+        . splash.sh
+        splash 'htop is Installed'
+        echo ''
         whiptail --title "htop" --msgbox "htop is Installed." 8 45;
     fi
 }
 function install_neofetch()
-{
-   for f in ${!osInfo[@]}
-    do
-        if [[ -f $f ]];then
-         package_manager=${osInfo[$f]}
-        fi
-    done
-       
+{   
     if [[ "$package_manager" == "pacman" ]];
     then
        sudo pacman -S neofetch
+       . splash.sh
+        splash 'neofetch is Installed'
+        echo ''
        whiptail --title "Neofetch" --msgbox "Neofetch is Installed." 8 45;
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
         sudo apt-get update
         sudo apt-get install neofetch
+        . splash.sh
+        splash 'neofetch is Installed'
+        echo ''
         whiptail --title "Neofetch" --msgbox "Neofetch is Installed." 8 45;
     else
         whiptail --title "Neofetch" --msgbox "Neofetch not is Installed." 8 45;
@@ -143,31 +170,36 @@ function install_PowersaveMode()
     if [ -e "$FILE" ]; 
     then
         sudo snap install auto-cpufreq
+        . splash.sh
+        splash 'Frequency Changer is Installed'
+        echo ''
         whiptail --title "CPU frequence Changer" --msgbox "CPU Frequence Changer is Installed." 8 45;
     else 
         install_store
         sudo snap install auto-cpufreq
+        . splash.sh
+        splash 'Frequency changer is Installed'
+        echo ''
         whiptail --title "CPU frequence Changer" --msgbox "CPU Frequence Changer is Installed." 8 45;
     fi
     
 }
 function install_Curl()
-{
-    for f in ${!osInfo[@]}
-    do
-        if [[ -f $f ]];then
-         package_manager=${osInfo[$f]}
-        fi
-    done
-       
+{     
     if [[ "$package_manager" == "pacman" ]];
     then
         sudo pacman -Sy curl
+        . splash.sh
+        splash 'curl is Installed'
+        echo ''
         whiptail --title "CURL" --msgbox "CURL is Installed." 8 45;
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
         sudo apt install curl
+        . splash.sh
+        splash 'curl is Installed'
+        echo ''
         whiptail --title "CURL" --msgbox "CURL is Installed." 8 45;
     else
         whiptail --title "CURL" --msgbox "CURL is Installed." 8 45;

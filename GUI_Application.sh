@@ -25,7 +25,7 @@ done
 
 FILE=/var/lib/snapd/snaps
 
-FLATPAK_FILE= /etc/profile.d/flatpak-bindir.sh
+FLATPAK_FILE=/etc/profile.d/flatpak-bindir.sh
 
 #these are buildin funtion for the GUI
 function echo_title() {     echo -ne "\033[1;44;37m${*}\033[0m\n"; }

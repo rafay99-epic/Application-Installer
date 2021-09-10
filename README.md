@@ -48,11 +48,7 @@ cd 'Application-Installer-for-Linux-'
 ```
 
 Once You are in the folder then enter the command
-### **Changing Permission:** 
-This command will give permission so that the application can run on you system.
-```bash
-chmod +x startup.sh
-```
+
 
 Now Enter the following command
 ### **Running the Application:**

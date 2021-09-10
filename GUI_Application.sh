@@ -25,7 +25,7 @@ done
 
 FILE=/var/lib/snapd/snaps
 
-
+FLATPAK_FILE= /etc/profile.d/flatpak-bindir.sh
 
 #these are buildin funtion for the GUI
 function echo_title() {     echo -ne "\033[1;44;37m${*}\033[0m\n"; }
@@ -64,6 +64,21 @@ function install_Snap_store()
     then 
         sudo apt install snapd
         sudo snap install snap-store 
+       #echo 'system is debian'
+    else
+        whiptail --title "Error" --msgbox "Your OS is Not Supported!!!!" 8 45;
+        exit 0
+    fi
+}
+function flatpak_store()
+{
+    if [[ "$package_manager" == "pacman" ]];
+    then 
+        sudo pacman -S flatpak
+       # echo 'program is working'
+    elif [[ "$package_manager" == "apt-get" ]];
+    then 
+         sudo apt install flatpak
        #echo 'system is debian'
     else
         whiptail --title "Error" --msgbox "Your OS is Not Supported!!!!" 8 45;
@@ -332,6 +347,335 @@ function sublime()
         whiptail --title "Sublime Text Editior" --msgbox "Sublime Text Editior is Installed on this system." 8 45;
     fi
 }
+#function google-chrome()
+# {
+
+#}
+
+function brackets()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install brackets --classic
+        splash 'Brackets Text Editior is Installed'
+        whiptail --title "Brackets Text Editior" --msgbox "Brackets Text Editior is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install brackets --classic
+        splash 'Brackets Text Editior is Installed'
+        whiptail --title "Brackets Text Editior" --msgbox "Brackes Text Editior is Installed on this system." 8 45;
+    fi
+}
+function vlc()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install vlc
+        splash 'VLC Video Players is Installed'
+        whiptail --title "VLC Video Player" --msgbox "VLC Video Player is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install vlc
+        splash 'VLC Video Players is Installed'
+        whiptail --title "VLC Video Player" --msgbox "VLC Video Player is Installed on this system." 8 45;
+    fi
+}
+
+function pluseAudio()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install pulseaudio
+        splash 'Pluse Audio is Installed'
+        whiptail --title "Pluse Audio" --msgbox "Pluse Audio is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install pulseaudio
+        splash 'Pluse Audio is Installed'
+        whiptail --title "Pluse Audio" --msgbox "Pluse Audio is Installed on this system." 8 45;
+    fi
+}
+
+function rythmobox()
+{
+    if [ -e "$FLATPAK_FILE" ]; 
+    then
+        sudo flatpak install flathub org.gnome.Rhythmbox3
+        splash 'Rythmobox Audio is Installed'
+        whiptail --title "Rythmobox Audio" --msgbox "Rythmobox Audio is Installed on this system." 8 45;
+    else  
+        flatpak_store
+        sudo flatpak install flathub org.gnome.Rhythmbox3
+        splash 'Rythmobox Audio is Installed'
+        whiptail --title "Rythmobox" --msgbox "Rythmobox Audio is Installed on this system." 8 45;
+    fi  
+}
+
+function obs()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install obs-studio
+        splash 'OBS is Installed'
+        whiptail --title "OBS" --msgbox "OBS is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install obs-studio
+        splash 'OBS is Installed'
+        whiptail --title "OBS" --msgbox "OBS is Installed on this system." 8 45;
+    fi    
+}
+function kdenlive()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install kdenlive
+        splash 'Kdenlive is Installed'
+        whiptail --title "Kdenlive" --msgbox "Kdenlive is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install kdenlive
+        splash 'Kdenlive is Installed'
+        whiptail --title "Kdenlive" --msgbox "Kdenlive is Installed on this system." 8 45;
+    fi
+}
+
+function gimp()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install gimp
+        splash 'GIMP is Installed'
+        whiptail --title "GIMP" --msgbox "GIMP is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install gimp
+        splash 'GIMP is Installed'
+        whiptail --title "GIMP" --msgbox "GIMP is Installed on this system." 8 45;
+    fi
+}
+function blender()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install blender --classic
+        splash 'Blender is Installed'
+        whiptail --title "Blender" --msgbox "Blender is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install blender --classic
+        splash 'Blender is Installed'
+        whiptail --title "Blender" --msgbox "Blender is Installed on this system." 8 45;
+    fi
+}
+function libreoffice()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install libreoffice
+        splash 'Libre Office is Installed'
+        whiptail --title "Libre Office" --msgbox "Libre Office is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install libreoffice
+        splash 'Libre Office is Installed'
+        whiptail --title "Libre Office" --msgbox "Libre Office is Installed on this system." 8 45;
+    fi
+}
+function WPS()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install wps-2019-snap
+        splash 'WPS Office is Installed'
+        whiptail --title "WPS Office" --msgbox "WPS Office is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install wps-2019-snap
+        splash 'WPS Office is Installed'
+        whiptail --title "WPS Office" --msgbox "WPS Office is Installed on this system." 8 45;
+    fi
+}
+function mailspring()
+{   
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install mailspring
+        splash 'MailSpring is Installed'
+        whiptail --title "MailSpring" --msgbox "MailSpring is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install mailspring
+        splash 'MailSpring is Installed'
+        whiptail --title "MailSpring" --msgbox "MailSpring is Installed on this system." 8 45;
+    fi
+}
+function slack()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install slack --classic
+        splash 'Slack is Installed'
+        whiptail --title "Slack" --msgbox "Slack is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install slack --classic
+        splash 'Slack is Installed'
+        whiptail --title "Slack" --msgbox "Slack is Installed on this system." 8 45;
+    fi    
+}
+function github_desktop()
+{
+    if [ -e "$FLATPAK_FILE" ]; 
+    then
+        sudo flatpak install flathub io.github.shiftey.Desktop
+        splash 'GitHub Desktop is Installed'
+        whiptail --title "GitHub Desktop" --msgbox "GitHub Desktop is Installed on this system." 8 45;
+    else  
+        flatpak_store
+        sudo flatpak install flathub io.github.shiftey.Desktop
+        splash 'GitHub Desktop is Installed'
+        whiptail --title "GitHub Desktop" --msgbox "GitHub Desktop is Installed on this system." 8 45;
+    fi
+}
+
+function pycharm()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install pycharm-community --classic
+        splash 'Pycharm is Installed'
+        whiptail --title "Pycharm" --msgbox "Pycharm is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install pycharm-community --classic
+        splash 'Pycharm is Installed'
+        whiptail --title "Pycharm" --msgbox "Pycharm is Installed on this system." 8 45;
+    fi
+}
+function eclipse()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install eclipse --classic
+        splash 'Eclipse is Installed'
+        whiptail --title "Eclipse" --msgbox "Eclipse is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install eclipse --classic
+        splash 'Eclipse is Installed'
+        whiptail --title "Eclipse" --msgbox "Eclipse is Installed on this system." 8 45;
+    fi
+}
+
+
+
+function zoom()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install zoom-client
+        splash 'Zoom is Installed'
+        whiptail --title "Zoom" --msgbox "Zoom is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install zoom-client
+        splash 'Zoom is Installed'
+        whiptail --title "Zoom" --msgbox "Zoom is Installed on this system." 8 45;
+    fi
+}
+
+function signal-desktop()
+{
+
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install signal-desktop
+        splash 'Signal Desktop is Installed'
+        whiptail --title "Signal Desktop" --msgbox "Signal Desktop is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install signal-desktop
+        splash 'Signal Desktop is Installed'
+        whiptail --title "Signal Desktop" --msgbox "Signal Desktop is Installed on this system." 8 45;
+    fi
+}
+
+function telegram-desktop()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install telegram-desktop
+        splash 'Telegram Desktop is Installed'
+        whiptail --title "Telegram Desktop" --msgbox "Telegram Desktop is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install telegram-desktop
+        splash 'Telegram Desktop is Installed'
+        whiptail --title "Telegram Desktop" --msgbox "Telegram Desktop is Installed on this system." 8 45;
+    fi  
+}
+function plex-media-server()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install plexmediaserver
+        splash 'Plex Media Server is Installed'
+        whiptail --title "Plex Media Server" --msgbox "Plex Media Server is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install plexmediaserver
+        splash 'Plex Media Server is Installed'
+        whiptail --title "Plex Media Server" --msgbox "Plex Media Server is Installed on this system." 8 45;
+    fi    
+}
+function apple-music()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install apple-music-for-linux
+        splash 'Apple Music is Installed'
+        whiptail --title "Apple Music" --msgbox "Apple Music is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install apple-music-for-linux
+        splash 'Apple Music is Installed'
+        whiptail --title "Apple Music" --msgbox "Apple Music is Installed on this system." 8 45;
+    fi
+}
+function audacity()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install audacity
+        splash 'Audacity is Installed'
+        whiptail --title "Audacity" --msgbox "Audacity is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install audacity
+        splash 'Audacity is Installed'
+        whiptail --title "Audacity" --msgbox "Audacity is Installed on this system." 8 45;
+    fi
+}
+function next-cloud()
+{
+    if [ -e "$FILE" ]; 
+    then
+        sudo snap install audacity
+        splash 'Next Cloud is Installed'
+        whiptail --title "Next Cloud" --msgbox "Next Cloud is Installed on this system." 8 45;
+    else  
+        install_Snap_store
+        sudo snap install audacity
+        splash 'Next Cloud is Installed'
+        whiptail --title "Next Cloud" --msgbox "Next Cloud is Installed on this system." 8 45;
+    fi
+}
+
+
+
+
+
 function All_Application()
 {
     java_JDK

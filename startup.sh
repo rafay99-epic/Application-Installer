@@ -55,12 +55,6 @@ function check_root()
 #this function will check and will install the two necessary packages curl and git once installed it will run start the application.
 function install_important_compoent()
 {
-    splash 'Welcome To Application Installer for Linux
-    Name: Mohammad Abdul Rafay 
-    Email: 99marafay@gmail.com'
-    echo ''
-    #this will check for the root access
-    check_root
 
     splash 'Checking for Important Compoent in the system'
     for f in ${!osInfo[@]}
@@ -74,13 +68,13 @@ function install_important_compoent()
     then
         install_git_arch
         install_curl_arch
-        startup
+        #startup
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
         install_git_debian_system
         install_curl_debian_system
-        startup
+        #startup
         #echo 'system is debian'
     else
         echo 'System is Not Supported!!'
@@ -135,11 +129,43 @@ function remove_Permisiion()
     chmod -x GUI_Meun.sh
     chmod -x choose_Distro.sh
 }
+
+function check_Files()
+{
+   if [[ -f check_Internet.sh && -f GUI_Application.sh && -f GUI_Meun.sh && -f choose_Distro.sh && -f controller_Menu.sh && -f Terminal_application.sh && -f Terminal_application_Menu_For_Arch.sh  ]]; 
+   then
+        echo ''
+        splash 'Appl Files are Present'
+        #echo "All Files Exit"
+    else
+        splash 'Files are not Present, Download all of the Files!!'
+        echo 'Some Files are missing'
+        echo 'Download all of the Files!!!'
+    fi
+}
+
+function startup_message()
+{
+        splash 'Welcome To Application Installer for Linux
+    Name: Mohammad Abdul Rafay 
+    Email: 99marafay@gmail.com'
+    echo ''
+}
+
 #this is the starting point of the application
 function startup()
 {
+    startup_message
+
     #this will check for root access if root is not present then it will ext the application
     check_root
+
+    #this function will check if all of the files are present or not 
+    check_Files
+
+
+    #this will download all of the important files
+    install_important_compoent
 
     #this will call a function and will provide all of the required permission
     give_permission
@@ -152,5 +178,5 @@ function startup()
     # once the script is loaded then calling the function
     check_Internet
 }
-# This will check for all of the important compoents required once checked and installed it will start the application
-install_important_compoent
+#this is the starting point
+startup

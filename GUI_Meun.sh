@@ -1,83 +1,103 @@
 #!/bin/bash
-
 #/**
 # * Mohammad Abdul Rafay Autmate Task for Linux
 # * Email: 99marafay@gmail.com
 # */
-
 
 function GUI_Menu()
 {
     decide='Yes';
     while :; do
         
-        ADVSEL=$(whiptail --title " GUI Application Installer " --fb --menu "Choose an option" --cancel-button "${decide} Back" 25 60 15 \
-            "1" "Update System" \
-            "2" "Install Java JDK" \
-            "3" "Install Netbeans" \
-            "4" "Install Spotify" \
-            "5" "Install Android Studio" \
-            "6" "Install Visual Studio Code" \
-            "7" "Install Discord" \
-            "8" "Install Microsoft Teams" \
-            "9" "Install Only Office" \
-            "10" "Install Notion" \
-            "11" "Install Bitwarden" \
-            "12" "Install Chromium Browser" \
-            "13" "Install Firefox Browser" \
-            "14" "Install Brave Browser" \
-            "15" "Install Atom Text Editior" \
-            "16" "Install Sublime Text Editior" \
-            "17" "Install All Application Listed above" 3>&1 1>&2 2>&3)
+        ADVSEL=$(whiptail --title " GUI Application Installer " --fb --menu "Choose from the following Application:" --cancel-button "${decide} Back" 25 60 15 \
+            "1" "Chromium Browser" \
+            "2" "Firefox Browser" \
+            "3" "Brave Browser" \
+            "4" "Google Chrome Browser" \
+            "5" "Sublime Text Editor" \
+            "6" "Visual Studio Code" \
+            "7" "Atom Text Editor" \
+            "8" "Brackets Text Editor" \
+            "9" "Notion" \
+            "10" "Rythmobox Music Player" \
+            "11" "VLC" \
+            "12" "Pluse Audio" \
+            "13" "Android Studio" \
+            "14" "Netbean Java IDE" \
+            "15" "GitHub Desktop" \
+            "16" "Pychar" \
+            "17" "Eclipse Java IDE" \
+            "18" "Flutter" \
+            "19" "Power Shell" \
+            "20" "Python 3" \
+            "21" "WPS" \
+            "22" "Only Office" \
+            "23" "Liber Office" \
+            "24" "Micrsoft Teams" \
+            "25" "Zoom" \
+            "26" "Signal Desktop" \
+            "27" "Telegram Desktop" \
+            "28" "OBS" \
+            "29" "Kdlive" \
+            "30" "Blender" \
+            "31" "GIMP" \
+            "32" "Apple Music" \
+            "33" "Spotify" \
+            "34" "Audcity" \
+            "35" "Plex- Media" \
+            "36" "Next Cloud" \
+            "37" "Google SDK Cloud" \
+            "38" "Steam" \
+            "39" "Wine" \
+            "40" "Bitwarden" \
+            "41" "Mailspring" \
+            "42" "Stacer" \
+            "43" "Slack" \
+            "44" "Install All Application Listed above" 3>&1 1>&2 2>&3)
         case $ADVSEL in
             1)
-                if (whiptail --title "Alert!!" --yesno "Do you want to update your System?." 10 60) 
+                if (whiptail --title "Chromium Browser" --yesno "Are you sure you want to Install Chromium Browser" 10 60) 
                 then
                     . GUI_Application.sh
-                    system_update
-                    GUI_Menu
+                    chromum
                 else
-                    whiptail --title "System Update" --msgbox "Your System is not Updated!" 8 45;
+                    whiptail --title "Alert!!!" --msgbox "The Application is not Installed" 8 45;
                 fi
                 ;;
             2)
-                if (whiptail --title "Alert!!" --yesno "Do you want to Install Java JDK?." 10 60) 
+                if (whiptail --title "Firefox" --yesno "Do you want to Install Firefox Browser." 10 60) 
                 then
                     . GUI_Application.sh
-                    java_JDK
-                    GUI_Menu
+                    firefox
                 else
-                    whiptail --title "Java JDK" --msgbox "Java JDK is not Installed" 8 45;
+                    whiptail --title "Alert!! " --msgbox "Sorry!! The application is not Installed on this System" 8 45;
                 fi
                 ;;
             3)
-                if (whiptail --title "Alert!!" --yesno "Do you want to Install Netbean?." 10 60) 
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install Brave Browser?." 10 60) 
                 then
                     . GUI_Application.sh
-                    netbean
-                    GUI_Menu
+                    brave
                 else
-                    whiptail --title "Netbeans" --msgbox "netbeans is not Installed" 8 45;
+                    whiptail --title "Brave Browser" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;
                 fi
                 ;;
             4)
-                if (whiptail --title "Alert!!" --yesno "Do you want to Install Spotify?." 10 60) 
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install Google Chrome?." 10 60) 
                 then
                     . GUI_Application.sh
-                    spotify
-                    GUI_Menu
+                    google-chrome
                 else
-                    whiptail --title "Spotify" --msgbox "Spotify is not Installed" 8 45;
+                    whiptail --title "Google Chrome" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;
                 fi
                 ;;
             5)
-                if (whiptail --title "Alert!!" --yesno "Do you want to Install Android Studio?." 10 60) 
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install Sublime Text Editor?." 10 60) 
                 then
                     . GUI_Application.sh
-                    android_studio
-                    GUI_Menu
+                    sublime
                 else
-                    whiptail --title "Android Studio" --msgbox "Android Studio is not Installed" 8 45;
+                    whiptail --title "Sublime Text Editor" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;
                 fi
                 ;;
             6)
@@ -85,117 +105,364 @@ function GUI_Menu()
                 then
                     . GUI_Application.sh
                     vs_code
-                    GUI_Menu
                 else
-                    whiptail --title "Visual Studio Code" --msgbox "Visual Studio Code is not Installed" 8 45;
+                    whiptail --title "Visual Studio Code" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;
                 fi
                 ;;
             7)
-                if (whiptail --title "Alert!!" --yesno "Do you want to Install Discord?." 10 60) 
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install Atom Text Editor?." 10 60) 
                 then
                     . GUI_Application.sh
-                    discord
-                    GUI_Menu
+                    atom
                 else
-                    whiptail --title "Discord" --msgbox "Discord is not Installed" 8 45;
+                    whiptail --title "Atom Text Editor" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;
                 fi
                 ;;
             8)
-                if (whiptail --title "Alert!!" --yesno "Do you want to Install Microsoft Teams?." 10 60) 
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install Brackets?." 10 60) 
                 then
                     . GUI_Application.sh
-                    ms_teams
-                    GUI_Menu
+                    brackets
                 else
-                    whiptail --title "Microsoft Teams" --msgbox "Microsoft Teams is not Installed" 8 45;
+                    whiptail --title "Brackets Text Editor" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;
                 fi
                 ;;
             9)
-                if (whiptail --title "Alert!!" --yesno "Do you want to Install Only Office Suite?." 10 60) 
-                then
-                    . GUI_Application.sh
-                    only_office
-                    GUI_Menu
-                else
-                    whiptail --title "Only office Suite" --msgbox "Only Office Suite is not Installed" 8 45;
-                fi
-                ;;
-            10)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install Notion?." 10 60) 
                 then
                     . GUI_Application.sh
                     notion
-                    GUI_Menu
                 else
-                    whiptail --title "Notion" --msgbox "Notion is not Installed" 8 45;   
+                    whiptail --title "Notion" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;
+                fi
+                ;;
+            10)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install Rythmobox Music Player?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    rythmobox
+                else
+                    whiptail --title "Rythmobox" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
                 fi
                 ;;
             11)
-                if (whiptail --title "Alert!!" --yesno "Do you want to Install Bitwarden?." 10 60) 
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install VLC?." 10 60) 
                 then
                     . GUI_Application.sh
-                    bitwarden
-                    GUI_Menu
+                    vlc
                 else
-                    whiptail --title "Bitwarden" --msgbox "Bitwarden is not Installed" 8 45;   
+                    whiptail --title "VLC" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
                 fi
                 ;;
             12)
-                if (whiptail --title "Alert!!" --yesno "Do you want to Install Chromium?." 10 60) 
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install Pluse Audio?." 10 60) 
                 then
                     . GUI_Application.sh
-                    chromum
-                    GUI_Menu
+                    pluseAudio
+                
                 else
-                    whiptail --title "Chromium" --msgbox "Chromium is not Installed" 8 45;   
+                    whiptail --title "Pluse Audio" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
                 fi
                 ;;
             13)
-                if (whiptail --title "Alert!!" --yesno "Do you want to Install Firefox?." 10 60) 
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install Android Studio?." 10 60) 
                 then
                     . GUI_Application.sh
-                    firefox
-                    GUI_Menu
+                    android_studio
+                
                 else
-                    whiptail --title "Firefox" --msgbox "Firfox is not Installed" 8 45;   
+                    whiptail --title "Android Studio" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
                 fi
                 ;;
             14)
-                if (whiptail --title "Alert!!" --yesno "Do you want to Install Brave?." 10 60) 
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install Netbean?." 10 60) 
                 then
                     . GUI_Application.sh
-                    brave
-                    GUI_Menu
+                    netbean
+                
                 else
-                    whiptail --title "Brave" --msgbox "Brave is not Installed" 8 45;   
+                    whiptail --title "Netbean" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
                 fi
                 ;;
             15)
-                if (whiptail --title "Alert!!" --yesno "Do you want to Install Atom?." 10 60) 
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install GitHub Desktop Application?." 10 60) 
                 then
                     . GUI_Application.sh
-                    atom
-                    GUI_Menu
+                    github_desktop
+                
                 else
-                    whiptail --title "Atom" --msgbox "Atom is not Installed" 8 45;   
+                    whiptail --title "GitHub Desktop" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
                 fi
                 ;;
             16)
-                if (whiptail --title "Alert!!" --yesno "Do you want to Install Sublime?." 10 60) 
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install Pycharm?." 10 60) 
                 then
                     . GUI_Application.sh
-                    sublime
-                    GUI_Menu
+                    pycharm
+                
                 else                   
-                    whiptail --title "Sublime" --msgbox "Sublime is not Installed" 8 45;   
+                    whiptail --title "Pychar" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
                 fi
                 ;;
             17)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    eclipse
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            18)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    flutter
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            19)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    powershell
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            20)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    java_JDK
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            21)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    python
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            21)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    WPS
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            22)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    only_office
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            23)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    libreoffice
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            24)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    ms_teams
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            25)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    zoom
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            26)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    signal-desktop
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            27)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    telegram-desktop
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            28)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    obs
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            29)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    kdenlive
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            30)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    blender
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            31)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    gimp
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            32)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    apple-music
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            33)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    spotify
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            34)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    audacity
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            35)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                   plex-media-server 
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            36)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                   next-cloud
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            37)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    google--sdk-cloud
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            38)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    steam
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            39)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    wine
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            40)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    bitwarden
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            41)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    mailspring
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            42)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    stacer
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+                
+            43)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
+                then
+                    . GUI_Application.sh
+                    slack
+                else                   
+                    whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
+                fi
+                ;;
+            44)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install All Application?." 10 60) 
                 then
                     . GUI_Application.sh
                     All_Application
-                    GUI_Menu
+                
                 else
                     whiptail --title "All Applications" --msgbox "No Application are Installed" 8 45;   
                 fi

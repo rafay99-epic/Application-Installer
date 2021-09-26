@@ -17,7 +17,7 @@ osInfo[/etc/arch-release]="pacman"
 
 
 #this is the location for the snap store files
-FILE=/var/lib/snapd/snaps
+#FILE=/var/lib/snapd/snaps
 
 #to find which OS is this 
 for f in ${!osInfo[@]}
@@ -27,40 +27,48 @@ for f in ${!osInfo[@]}
         fi
     done
 
-function install_store()
-{
-    . splash.sh
-    splash 'Install Snap Store'
-    echo ''
-    for f in ${!osInfo[@]}
-    do
-        if [[ -f $f ]];then
-         package_manager=${osInfo[$f]}
-        fi
-    done
+# function install_store()
+# {
+#     . splash.sh
+#     splash 'Install Snap Store'
+#     echo ''
+#     for f in ${!osInfo[@]}
+#     do
+#         if [[ -f $f ]];then
+#          package_manager=${osInfo[$f]}
+#         fi
+#     done
        
-    if [[ "$package_manager" == "pacman" ]];
-    then
-         #this commad will install snap store on this system
-        sudo pacman -S snapd
-        sudo systemctl enable --now snapd.socket
-        sudo ln -s /var/lib/snapd/snap /snap
-       # echo 'program is working'
-    elif [[ "$package_manager" == "apt-get" ]];
-    then 
-        sudo apt install snapd
-        sudo snap install snap-store
-    else
-        echo 'System is Not Supported!!'
-        exit 0
-    fi
-}
+#     if [[ "$package_manager" == "pacman" ]];
+#     then
+#          #this commad will install snap store on this system
+#         sudo pacman -S snapd
+#         sudo systemctl enable --now snapd.socket
+#         sudo ln -s /var/lib/snapd/snap /snap
+#        # echo 'program is working'
+#     elif [[ "$package_manager" == "apt-get" ]];
+#     then 
+#         sudo apt install snapd
+#         sudo snap install snap-store
+#     else
+#         echo 'System is Not Supported!!'
+#         exit 0
+#     fi
+# }
 
 # gdu is a disk analyzier
 function install_gdu()
 {
-    if [ -e "$FILE" ]; 
-    then        
+    # New Code
+    if [[ "$package_manager" == "pacman" ]];
+    then
+        sudo pacman -S gdu
+        . splash.sh
+        splash 'gdu is Installed'
+        echo ''
+        whiptail --title "GDU Disk Analyizer" --msgbox "GDU Disk Analyizer is Installed." 8 45;
+    elif [[ "$package_manager" == "apt-get" ]];
+    then         
         sudo  snap install gdu-disk-usage-analyzer
         sudo snap connect gdu-disk-usage-analyzer:mount-observe :mount-observe
         sudo snap connect gdu-disk-usage-analyzer:system-backup :system-backup
@@ -69,37 +77,74 @@ function install_gdu()
         splash 'gdu is Installed'
         echo ''
         whiptail --title "GDU Disk Analyizer" --msgbox "GDU Disk Analyizer is Installed." 8 45;
-    else 
-        install_store
-        sudo  snap install gdu-disk-usage-analyzer
-        sudo snap connect gdu-disk-usage-analyzer:mount-observe :mount-observe
-        sudo snap connect gdu-disk-usage-analyzer:system-backup :system-backup
-        sudo snap alias gdu-disk-usage-analyzer.gdu gdu
-        . splash.sh
-        splash 'gdu is Installed'
-        echo ''
-        whiptail --title "GDU Disk Analyizer" --msgbox "GDU Disk Analyizer is Installed." 8 45;
+    else
+        whiptail --title "Error" --msgbox "Applicatin can not be installed." 8 45;
     fi
+
+    # Old Code
+
+    # if [ -e "$FILE" ]; 
+    # then        
+    #     sudo  snap install gdu-disk-usage-analyzer
+    #     sudo snap connect gdu-disk-usage-analyzer:mount-observe :mount-observe
+    #     sudo snap connect gdu-disk-usage-analyzer:system-backup :system-backup
+    #     sudo snap alias gdu-disk-usage-analyzer.gdu gdu
+    #     . splash.sh
+    #     splash 'gdu is Installed'
+    #     echo ''
+    #     whiptail --title "GDU Disk Analyizer" --msgbox "GDU Disk Analyizer is Installed." 8 45;
+    # else 
+    #     install_store
+
+    #     sudo  snap install gdu-disk-usage-analyzer
+    #     sudo snap connect gdu-disk-usage-analyzer:mount-observe :mount-observe
+    #     sudo snap connect gdu-disk-usage-analyzer:system-backup :system-backup
+    #     sudo snap alias gdu-disk-usage-analyzer.gdu gdu
+    #     . splash.sh
+    #     splash 'gdu is Installed'
+    #     echo ''
+    #     whiptail --title "GDU Disk Analyizer" --msgbox "GDU Disk Analyizer is Installed." 8 45;
+    # fi
 }
 
 # lsd is alternative to ls
 function install_lsd()
-{   
-    if [ -e "$FILE" ]; 
+{ 
+    # NEw code
+    if [[ "$package_manager" == "pacman" ]];
     then
+        sudo pacman -S lsd
+        . splash.sh
+        splash 'lsd is Installed'
+        echo ''
+        whiptail --title "lsd" --msgbox "lsd is Installed." 8 45;
+    elif [[ "$package_manager" == "apt-get" ]];
+    then 
         sudo snap install lsd
         . splash.sh
         splash 'lsd is Installed'
         echo ''
         whiptail --title "lsd" --msgbox "lsd is Installed." 8 45;
-    else 
-        install_store
-        sudo snap install lsd
-        . splash.sh
-        splash 'lsd is Installed'
-        echo ''
-        whiptail --title "lsd" --msgbox "lsd is Installed." 8 45;
+    else
+        whiptail --title "Error" --msgbox "Applicatin can not be installed." 8 45;
     fi
+
+    # Old code from different Version  
+    # if [ -e "$FILE" ]; 
+    # then
+    #     sudo snap install lsd
+    #     . splash.sh
+    #     splash 'lsd is Installed'
+    #     echo ''
+    #     whiptail --title "lsd" --msgbox "lsd is Installed." 8 45;
+    # else 
+    #     install_store
+    #     sudo snap install lsd
+    #     . splash.sh
+    #     splash 'lsd is Installed'
+    #     echo ''
+    #     whiptail --title "lsd" --msgbox "lsd is Installed." 8 45;
+    # fi
 }
 function install_git()
 {      
@@ -126,21 +171,42 @@ function install_git()
 }    
 function install_htop()
 {
-    if [ -e "$FILE" ]; 
+    #New Code 
+    if [[ "$package_manager" == "pacman" ]];
     then
-        sudo snap install htop
+        sudo pacman -S htop 
         . splash.sh
         splash 'htop is Installed'
         echo ''
         whiptail --title "htop" --msgbox "htop is Installed." 8 45;
-    else 
-        install_store
-        sudo snap install htop
+    elif [[ "$package_manager" == "apt-get" ]];
+    then 
+        sudo apt-get install htop
         . splash.sh
         splash 'htop is Installed'
         echo ''
         whiptail --title "htop" --msgbox "htop is Installed." 8 45;
+    else
+        whiptail --title "Error" --msgbox "Applicatin can not be installed." 8 45;
     fi
+
+    # Old Code
+
+    # if [ -e "$FILE" ]; 
+    # then
+    #     sudo snap install htop
+    #     . splash.sh
+    #     splash 'htop is Installed'
+    #     echo ''
+    #     whiptail --title "htop" --msgbox "htop is Installed." 8 45;
+    # else 
+    #     install_store
+    #     sudo snap install htop
+    #     . splash.sh
+    #     splash 'htop is Installed'
+    #     echo ''
+    #     whiptail --title "htop" --msgbox "htop is Installed." 8 45;
+    # fi
 }
 function install_neofetch()
 {   
@@ -167,22 +233,41 @@ function install_neofetch()
 }
 function install_PowersaveMode()
 {
-    if [ -e "$FILE" ]; 
+    # New code
+    if [[ "$package_manager" == "pacman" ]];
+    then
+        yay -S auto-cpufreq-git
+        . splash.sh
+        splash 'Frequency Changer is Installed'
+        echo ''
+        whiptail --title "CPU frequence Changer" --msgbox "CPU Frequence Changer is Installed." 8 45;         
+    elif [[ "$package_manager" == "apt-get" ]];
     then
         sudo snap install auto-cpufreq
         . splash.sh
         splash 'Frequency Changer is Installed'
         echo ''
         whiptail --title "CPU frequence Changer" --msgbox "CPU Frequence Changer is Installed." 8 45;
-    else 
-        install_store
-        sudo snap install auto-cpufreq
-        . splash.sh
-        splash 'Frequency changer is Installed'
-        echo ''
-        whiptail --title "CPU frequence Changer" --msgbox "CPU Frequence Changer is Installed." 8 45;
+    else
+        whiptail --title "Error" --msgbox "Applicatin can not be installed." 8 45;
     fi
     
+    # Old Code
+    # if [ -e "$FILE" ]; 
+    # then
+    #     sudo snap install auto-cpufreq
+    #     . splash.sh
+    #     splash 'Frequency Changer is Installed'
+    #     echo ''
+    #     whiptail --title "CPU frequence Changer" --msgbox "CPU Frequence Changer is Installed." 8 45;
+    # else 
+    #     install_store
+    #     sudo snap install auto-cpufreq
+    #     . splash.sh
+    #     splash 'Frequency changer is Installed'
+    #     echo ''
+    #     whiptail --title "CPU frequence Changer" --msgbox "CPU Frequence Changer is Installed." 8 45;
+    # fi    
 }
 function install_Curl()
 {     

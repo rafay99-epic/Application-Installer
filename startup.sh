@@ -1,9 +1,27 @@
 #!/bin/bash
 
 #/**
-# * Mohammad Abdul Rafay Autmate Task for Linux
+# * Mohammad Abdul Rafay Automate Task for Linux
 # * Email: 99marafay@gmail.com
 # */
+
+# this is very all of the package manager are placed
+declare -A osInfo;
+osInfo[/etc/debian_version]="apt-get"
+osInfo[/etc/alpine-release]="apk"
+osInfo[/etc/centos-release]="yum"
+osInfo[/etc/fedora-release]="dnf"
+osInfo[/etc/arch-release]="pacman"
+
+#to find the which Os yo are running
+for f in ${!osInfo[@]}
+do
+    if [[ -f $f ]];
+    then
+         package_manager=${osInfo[$f]}
+    fi
+done
+
 
 #these are buildin funtion for the GUI
 function echo_title() {     echo -ne "\033[1;44;37m${*}\033[0m\n"; }
@@ -52,61 +70,7 @@ function check_root()
         exit 1
     fi
 }
-#this function will check and will install the two necessary packages curl and git once installed it will run start the application.
-function install_important_compoent()
-{
 
-    splash 'Checking for Important Compoent in the system'
-    for f in ${!osInfo[@]}
-    do
-        if [[ -f $f ]];then
-         package_manager=${osInfo[$f]}
-        fi
-    done
-       
-    if [[ "$package_manager" == "pacman" ]];
-    then
-        install_git_arch
-        install_curl_arch
-        #startup
-       # echo 'program is working'
-    elif [[ "$package_manager" == "apt-get" ]];
-    then 
-        install_git_debian_system
-        install_curl_debian_system
-        #startup
-        #echo 'system is debian'
-    else
-        echo 'System is Not Supported!!'
-        exit 0
-    fi
-}
-function install_git_debian_system()
-{
-    sudo apt-get update
-    sudo apt-get install git
-}
-function install_curl_debian_system()
-{
-    sudo apt-get update
-    sudo apt-get install curl
-}
-function install_git_arch()
-{
-   FILE=/bin
-    if [ ! -f "$FILE" ]; 
-    then
-        sudo pacman -S git
-    fi
-}
-function install_curl_arch()
-{
-    FILE=/usr/bin/curl-config
-    if [ ! -f "$FILE" ]; 
-    then
-        sudo pacman -Sy curl       
-    fi  
-}
 function give_permission()
 {
     # Giving the executable permission
@@ -118,6 +82,7 @@ function give_permission()
     chmod +x GUI_Meun.sh
     chmod +x choose_Distro.sh
     chmod +x splash.sh
+    chmod +x check_Compoents.sh
 }
 function remove_Permisiion()
 {
@@ -130,11 +95,12 @@ function remove_Permisiion()
     chmod -x GUI_Meun.sh
     chmod -x choose_Distro.sh
     chmod -x splash.sh
+    chmod -x check_Compoents.sh
 }
 
 function check_Files()
 {
-   if [[ -f check_Internet.sh && -f GUI_Application.sh && -f GUI_Meun.sh && -f choose_Distro.sh && -f controller_Menu.sh && -f Terminal_application.sh && -f Terminal-Application-Menu.sh  ]]; 
+   if [[ -f check_Internet.sh && -f GUI_Application.sh && -f GUI_Meun.sh && -f choose_Distro.sh && -f controller_Menu.sh && -f Terminal_application.sh && -f Terminal-Application-Menu.sh && -f check_Compoents.sh && splash.sh ]]; 
    then
         echo ''
         splash 'All Files are Present'
@@ -156,31 +122,43 @@ function startup_message()
     echo ''
 }
 
+function check_OS()
+{
+    #this will check for root, if root access is not given it will exit the application
+    check_root
+
+    if [[ "$package_manager" == "pacman" ]];
+    then
+        startup
+    elif [[ "$package_manager" == "apt-get" ]];
+    then 
+        startup
+    else
+        whiptail --title "Error" --msgbox "Your Package Manager is not Supported" 8 45;
+        exit 0
+    fi
+}
+
+
+
+
 #this is the starting point of the application
 function startup()
 {
     startup_message
 
-    #this will check for root access if root is not present then it will ext the application
-    check_root
-
     #this function will check if all of the files are present or not 
     check_Files
-
-
-    #this will download all of the important files
-    install_important_compoent
 
     #this will call a function and will provide all of the required permission
     give_permission
 
+    
     # calling the check internet Script
-    . check_Internet.sh
-
     splash 'Checking for the Internet Connection'
     echo ''
-    # once the script is loaded then calling the function
-    check_Internet
+    . check_Internet.sh
+   
 }
 #this is the starting point
-startup
+check_OS

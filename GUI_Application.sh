@@ -233,7 +233,7 @@ function firefox()
     #New Code 
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S firefox
+        sudo pacman -Sy firefox
         splash 'Firefox Browser is Installed'
         whiptail --title "Firefox" --msgbox "Firefox is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -264,7 +264,7 @@ function brave()
 {
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S brave-browser
+        sudo pacman -Sy brave-browser
         splash 'Brave Browser is Installed'
         whiptail --title "Brave" --msgbox "Brave is Installed on this system." 8 45;      
     elif [[ "$package_manager" == "apt-get" ]];
@@ -294,7 +294,7 @@ function google-chrome()
 {
     if [[ "$package_manager" == "pacman" ]];
     then
-        yay google-chrome
+        yay -Sy google-chrome
         splash 'Google Chrome Browser is Installed'
         whiptail --title "Google Chrome" --msgbox "Google Chrome is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -306,6 +306,14 @@ function google-chrome()
     else
         whiptail --title "Error" --msgbox "Application is not Installed" 8 45;
     fi
+}
+function All_Browser()
+{
+    chromum
+    brave
+    google-chrome
+    firefox
+    whiptail --title "Message" --msgbox "Al Browsers are Installed" 8 45;
 }
 
 # TEXT Editior Category
@@ -481,6 +489,16 @@ function notion()
     # fi
 }
 
+function All-text-Editior() 
+{
+    sublime
+    notion
+    vs_code
+    brackets
+    atom
+    whiptail --title "Message" --msgbox "All Text Editior are Installed" 8 45;
+
+}
 
 # MultiMedia Category
 
@@ -585,7 +603,13 @@ function rythmobox()
     #     whiptail --title "Rythmobox" --msgbox "Rythmobox Audio is Installed on this system." 8 45;
     # fi  
 }
-
+function All-Multi-Media()
+{
+    vlc
+    pluseAudio
+    rythmobox
+    whiptail --title "Message" --msgbox "All Multi Media Application are Installed on this system." 8 45;
+}
 
 # Development Section
 
@@ -928,7 +952,30 @@ function python()
     fi
 }
 
+function All-Devloper()
+{
+    python
+    android_studio
+    powershell
+    flutter
+    pycharm
+    github_desktop
+    eclipse
+    netbean
+    java_JDK
+    whiptail --title "Message" --msgbox "All Applications are Installed" 8 45;
+}
+
 # Office Suite Category
+function All-Office()
+{
+    only_office
+    WPS
+    libreoffice
+    whiptail --title "Message" --msgbox "All Applications are Installed" 8 45;
+
+}
+
 
 #Only Office
 function only_office()
@@ -1033,6 +1080,15 @@ function WPS()
 
 
 #discord
+function All-conference()
+{
+    discord
+    ms_teams
+    zoom
+    signal-desktop
+    telegram-desktop
+    whiptail --title "Message" --msgbox "All Applications are Installed" 8 45;
+}
 function discord()
 {
     #New Code
@@ -1203,6 +1259,14 @@ function telegram-desktop()
 
 # Graphic Work Categoty
 
+function All-graphic() 
+{
+    obs
+    kdenlive
+    gimp
+    blender
+    whiptail --title "Message" --msgbox "All Applications are Installed" 8 45;
+}
 #Obs
 function obs()
 {
@@ -1339,6 +1403,14 @@ function blender()
 
 # Audio and Music Category
 
+function All-Music()
+{
+    spotify
+    audacity
+    plex-media-server
+    whiptail --title "Message" --msgbox "All Text Editior are Installed" 8 45;
+
+}
 # spotify
 function spotify()
 {
@@ -1439,7 +1511,12 @@ function plex-media-server()
 }
 
 # Cloud Service Category
-
+function  All-cloud-services()
+{
+    next-cloud
+    google--sdk-cloud
+    whiptail --title "Message" --msgbox "All Applications are Installed" 8 45;
+}
 #Next Cloud
 function next-cloud()
 {
@@ -1507,7 +1584,14 @@ function google--sdk-cloud()
 
 
 # Essencial Category
-
+function All-essencial()
+{
+    bitwarden
+    mailspring
+    slack
+    stacer
+    whiptail --title "Message" --msgbox "All Applications are Installed" 8 45;
+}
 # bitwarden
 function bitwarden()
 {
@@ -1629,7 +1713,11 @@ function stacer()
 
 
 #Game Category
-
+function All-Games()
+{
+    steam
+    wine
+}
 #steam
 function steam()
 {

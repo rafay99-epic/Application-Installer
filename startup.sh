@@ -83,6 +83,17 @@ function give_permission()
     chmod +x choose_Distro.sh
     chmod +x splash.sh
     chmod +x check_Compoents.sh
+    chmod +x Browser.sh
+    chmod +x  Development-tools.sh
+    chmod +x Games-category-menu.sh
+    chmod +x MultiMedia-category.sh
+    chmod +x cloud-service-category-menu.sh
+    chmod +x conference-call-menu.sh
+    chmod +x essential-category-menu.sh
+    chmod +x  graphical-work-category-menu.sh
+    chmod +x music-category-menu.sh
+    chmod +x office-category-menu.sh
+    chmod +x text-editior-category-meun.sh
 }
 function remove_Permisiion()
 {
@@ -96,11 +107,23 @@ function remove_Permisiion()
     chmod -x choose_Distro.sh
     chmod -x splash.sh
     chmod -x check_Compoents.sh
+
+    chmod -x Browser.sh
+    chmod -x  Development-tools.sh
+    chmod -x Games-category-menu.sh
+    chmod -x MultiMedia-category.sh
+    chmod -x cloud-service-category-menu.sh
+    chmod -x conference-call-menu.sh
+    chmod -x essential-category-menu.sh
+    chmod -x graphical-work-category-menu.sh
+    chmod -x music-category-menu.sh
+    chmod -x office-category-menu.sh
+    chmod -x text-editior-category-meun.sh
 }
 
 function check_Files()
 {
-   if [[ -f check_Internet.sh && -f GUI_Application.sh && -f GUI_Meun.sh && -f choose_Distro.sh && -f controller_Menu.sh && -f Terminal_application.sh && -f Terminal-Application-Menu.sh && -f check_Compoents.sh && splash.sh ]]; 
+   if [[ -f check_Internet.sh && -f GUI_Application.sh && -f GUI_Meun.sh && -f choose_Distro.sh && -f controller_Menu.sh && -f Terminal_application.sh && -f Terminal-Application-Menu.sh && -f check_Compoents.sh && -f splash.sh && -f Browser.sh && -f Development-tools.sh && -f Games-category-menu.sh && -f MultiMedia-category.sh && -f cloud-service-category-menu.sh && -f conference-call-menu.sh && -f essential-category-menu.sh && -f graphical-work-category-menu.sh && -f music-category-menu.sh && -f office-category-menu.sh && -f text-editior-category-meun.sh ]]
    then
         echo ''
         splash 'All Files are Present'

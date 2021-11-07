@@ -147,7 +147,7 @@ function flathub-update()
 
     # New Code
     sudo flatpak update
-    splash 'FlatpHub Packages are Upto Date'
+    splash 'Flatpak Packages are Upto Date'
 
     # Old Code from Version 3.1
 
@@ -185,11 +185,18 @@ function yay-update()
 }
 #this will update all of the application
 function update-all-system()
-{
+{   
     system_update
-    snap-update
-    flathub-update
-    yay-update
+    if [[ "$package_manager" == "pacman" ]];
+    then
+        yay-update
+    elif [[ "$package_manager" == "apt-get" ]];
+    then 
+       snap-update
+       flathub-update
+    else
+        whiptail --title "Allert!!" --msgbox "Sorry The application can not be installed" 8 45;
+    fi
     splash 'Your System is updated'
     whiptail --title "System Update" --msgbox "Your System is Updated." 8 45;
 }
@@ -400,7 +407,7 @@ function brackets()
         whiptail --title "Brackets" --msgbox "Brackets is Installed on this system." 8 45;                  
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo snap install atom --classic
+        sudo snap install brackets --classic
         splash 'Brackets Text Editior is Installed'
         whiptail --title "Brackets" --msgbox "Brackets is Installed on this system." 8 45;
     else
@@ -662,7 +669,11 @@ function java_JDK()
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo apt-get install openjdk-8-jdk
+        sudo apt install default-jre
+        sudo apt install openjdk-11-jre-headless
+        sudo apt install default-jre
+        sudo apt install default-jre
+        sudo apt install default-jdk
         whiptail --title "Java JDK" --msgbox "Java JDK is Installed." 8 45;
         splash 'Java JDK is Installed'
        #echo 'system is debian'
@@ -883,8 +894,6 @@ function powershell()
         wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
         # Register the Microsoft repository GPG keys
         sudo dpkg -i packages-microsoft-prod.deb
-        # Update the list of products
-        sudo apt-get update
         # Enable the "universe" repositories
         sudo add-apt-repository universe
         # Install PowerShell
@@ -1087,7 +1096,27 @@ function All-conference()
     zoom
     signal-desktop
     telegram-desktop
+    whatsApp
     whiptail --title "Message" --msgbox "All Applications are Installed" 8 45;
+}
+function whatsApp()
+{
+    #New Code
+    if [[ "$package_manager" == "pacman" ]];
+    then
+        #The command of Arch is decided
+        splash 'WhatsApp is Installed'
+        whiptail --title "WhatsApp" --msgbox "WhatsApp is Installed." 8 45;
+    elif [[ "$package_manager" == "apt-get" ]];
+    then 
+        sudo snap install whatsapp-for-linux
+        splash 'WhatsApp is Installed'
+        whiptail --title "WhatsApp" --msgbox "WhatsApp is Installed." 8 45;
+    else
+        whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
+    fi
+    
+    
 }
 function discord()
 {
@@ -1528,7 +1557,7 @@ function next-cloud()
         whiptail --title "Next Cloud" --msgbox "Next Cloud is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo snap install audacity
+        sudo snap install nextcloud
         splash 'Next Cloud is Installed'
         whiptail --title "Next Cloud" --msgbox "Next Cloud is Installed on this system." 8 45;
     else
@@ -1729,9 +1758,7 @@ function steam()
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo add-apt-repository multiverse
-        sudo apt-get update
-        sudo apt-get install steam 
+        sudo flatpak install flathub com.valvesoftware.Steam
         splash 'Steam is Installed'
         whiptail --title "Steam" --msgbox "Steam is Installed on this system." 8 45;
        #echo 'system is debian'

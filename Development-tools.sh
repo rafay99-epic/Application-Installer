@@ -86,7 +86,7 @@ function Development-tools()
                     whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
                 fi
                 ;;
-            28)
+            8)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
                     . GUI_Application.sh

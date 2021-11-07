@@ -290,6 +290,27 @@ function install_Curl()
         whiptail --title "CURL" --msgbox "CURL is Installed." 8 45;
     fi
 }
+function make() 
+{
+    if [[ "$package_manager" == "pacman" ]];
+    then
+        
+        . splash.sh
+        splash 'Make is Installed'
+        echo ''
+        whiptail --title "make" --msgbox "make is Installed." 8 45;
+       # echo 'program is working'
+    elif [[ "$package_manager" == "apt-get" ]];
+    then 
+        sudo apt install make
+        . splash.sh
+        splash 'Make is Installed'
+        echo ''
+        whiptail --title "make" --msgbox "make is Installed." 8 45;
+    else
+        whiptail --title "application" --msgbox "Make is Installed." 8 45;
+    fi
+}
 function All_terminal_Application()
 {
     install_gdu
@@ -298,6 +319,7 @@ function All_terminal_Application()
     install_neofetch
     install_htop
     install_lsd
+    make
     whiptail --title "All Terminal Application" --msgbox "All Terminal Applications are Installed." 8 45;
 }
 function learn_terminal_Application()

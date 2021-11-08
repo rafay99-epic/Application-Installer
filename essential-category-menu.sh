@@ -26,7 +26,6 @@ function essential()
         ADVSEL=$(whiptail --title " GUI Application Installer " --fb --menu "Choose from the following Application:" --cancel-button "${decide} Back" 25 60 15 \
             "1" "Bitwarden" \
             "2" "Mailspring" \
-            #"3" "Stacer" \
             "3" "Slack" \
             "4" "Install All Application Listed above" 3>&1 1>&2 2>&3)
         case $ADVSEL in
@@ -50,17 +49,6 @@ function essential()
                     whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
                 fi
                 ;;
-            #3)
-            #    if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
-            #    then
-            #        . GUI_Application.sh
-            #        stacer
-            #        essential
-            #    else                   
-            #        whiptail --title "Aplication Alert!!" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;   
-            #    fi
-            #    ;;
-                
             3)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then

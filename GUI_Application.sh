@@ -1446,7 +1446,6 @@ function spotify()
     if [[ "$package_manager" == "pacman" ]];
     then
         sudo flatpak install flathub com.spotify.Client
-        sudo pamac install spotify
         splash 'Spotify is Installed'
         whiptail --title "Spotify" --msgbox "Spotify is Installed on this system." 8 45;                
     elif [[ "$package_manager" == "apt-get" ]];

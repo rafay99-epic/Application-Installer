@@ -29,8 +29,11 @@ done
 #File location for the snap store
 SNAP=/var/lib/snapd/snaps
 
-#The file location for the flatpak or FlatHib
+#The file location for the flatpak or FlatHub for arch
 FLATPAK_FILE=/etc/profile.d/flatpak-bindir.sh
+
+#the file location for debian.
+FLATPAK_FILE_DEBIAN = /usr/bin/flatpak
 
 #Location for the yay on the arch system
 YAY_LOCATION=/usr/bin/yay
@@ -100,13 +103,13 @@ function flathub()
         fi
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        if [ ! -e "$FLATPAK_FILE" ]; 
+        if [ ! -e "$FLATPAK_FILE_DEBIAN" ]; 
         then
-            sudo add-apt-repository ppa:alexlarsson/flatpak
-            sudo apt-get update
-            sudo apt-get upgrade
             sudo apt install flatpak
-            flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo 
+            sudp apt-get update
+            sudo apt-get upgrade
+            sudo apt install gnome-software-plugin-flatpak
+            sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
         else  
             splash "FlatHub Is already Installed"
         fi

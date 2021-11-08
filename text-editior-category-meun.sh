@@ -6,8 +6,8 @@ function text-editior-category()
         ADVSEL=$(whiptail --title " GUI Application Installer " --fb --menu "Choose from the following Application:" --cancel-button "${decide} Back" 25 60 15 \
             "1" "Sublime Text Editor" \
             "2" "Visual Studio Code" \
-            "3" "Atom Text Editor" \
-            "4" "Brackets Text Editor" \
+            "3" "Brackets Text Editor" \
+            "4" "Atom Text Editor" \
             "5" "Notion" \
             "6" "Install All Application Listed above" 3>&1 1>&2 2>&3)
         case $ADVSEL in
@@ -32,20 +32,20 @@ function text-editior-category()
                 fi
                 ;;
             3)
-                if (whiptail --title "Alert!!" --yesno "Do you want to Install Atom Text Editor?." 10 60) 
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install brackets Text Editor?." 10 60) 
                 then
                     . GUI_Application.sh
-                    atom
+                    brackets
                     text-editior-category
                 else
                     whiptail --title "Atom Text Editor" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;
                 fi
                 ;;
             4)
-                if (whiptail --title "Alert!!" --yesno "Do you want to Install Brackets?." 10 60) 
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install Atom?." 10 60) 
                 then
                     . GUI_Application.sh
-                    brackets
+                    atom
                     text-editior-category
                 else
                     whiptail --title "Brackets Text Editor" --msgbox "Sorry!! The Application is not Installed on this System" 8 45;

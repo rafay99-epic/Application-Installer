@@ -1445,6 +1445,7 @@ function spotify()
     # New code
     if [[ "$package_manager" == "pacman" ]];
     then
+        sudo flatpak install flathub com.spotify.Client
         sudo pamac install spotify
         splash 'Spotify is Installed'
         whiptail --title "Spotify" --msgbox "Spotify is Installed on this system." 8 45;                
@@ -1541,9 +1542,23 @@ function plex-media-server()
 # Cloud Service Category
 function  All-cloud-services()
 {
-    next-cloud
-    google--sdk-cloud
-    whiptail --title "Message" --msgbox "All Applications are Installed" 8 45;
+
+    if [[ "$package_manager" == "pacman" ]];
+    then
+        next-cloud
+        #google--sdk-cloud
+        whiptail --title "Message" --msgbox "All Applications are Installed" 8 45;
+    elif [[ "$package_manager" == "apt-get" ]];
+    then 
+        next-cloud
+        google--sdk-cloud
+        whiptail --title "Message" --msgbox "All Applications are Installed" 8 45;
+    else
+        echo 'Importamt compoent is not Installed!!!!'
+        exit 0
+    fi
+
+    
 }
 #Next Cloud
 function next-cloud()
@@ -1694,7 +1709,7 @@ function slack()
     # New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pamac install slack-desktop
+        sudo flatpak install flathub com.slack.Slack
         splash 'Slack is Installed'
         whiptail --title "Slack" --msgbox "Slack is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];

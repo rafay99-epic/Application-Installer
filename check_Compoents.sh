@@ -33,7 +33,7 @@ SNAP=/var/lib/snapd/snaps
 FLATPAK_FILE=/etc/profile.d/flatpak-bindir.sh
 
 #the file location for debian.
-FLATPAK_FILE_DEBIAN = /usr/bin/flatpak
+FLATPAK_FILE_DEBIAN=/usr/bin/flatpak
 
 #Location for the yay on the arch system
 YAY_LOCATION=/usr/bin/yay

@@ -990,7 +990,7 @@ function only_office()
     #New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S onlyoffice-desktopeditors
+        sudo pacman -S onlyoffice
         splash 'Only Office Suite is Installed'
         whiptail --title "Only Office Suite" --msgbox "Only Office Suite is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];

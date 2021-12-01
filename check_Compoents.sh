@@ -38,6 +38,9 @@ FLATPAK_FILE_DEBIAN=/usr/bin/flatpak
 #Location for the yay on the arch system
 YAY_LOCATION=/usr/bin/yay
 
+#Location of pamac AUR helper
+PAMAC= /usr/bin/pamac
+
 #Loction of Git
 GIT=/usr/bin/git
 
@@ -75,6 +78,7 @@ function snap()
     if [[ "$package_manager" == "pacman" ]];
     then
         yay
+        pamac
     elif [[ "$package_manager" == "apt-get" ]];
     then 
         if [ ! -e "$SNAP" ]; 
@@ -129,6 +133,15 @@ function yay()
         splash "Yay Aur Helper is in the system"
     fi
 
+}
+function pamac()
+{
+    if [ ! -e "$PAMAC" ]; 
+    then
+        sudo pacman -S pamac
+    else
+        splash "Yay Aur Helper is in the system"
+    fi
 }
 # #check for git
 function git()

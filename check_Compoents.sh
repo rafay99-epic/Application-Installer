@@ -39,7 +39,7 @@ FLATPAK_FILE_DEBIAN=/usr/bin/flatpak
 YAY_LOCATION=/usr/bin/yay
 
 #Location of pamac AUR helper
-PAMAC= /usr/bin/pamac
+PAMAC=/usr/bin/pamac
 
 #Loction of Git
 GIT=/usr/bin/git

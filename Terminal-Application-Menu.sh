@@ -4,27 +4,29 @@
 # * Email: 99marafay@gmail.com
 # */
 
-# this is very all of the package manager are placed
-declare -A osInfo;
-osInfo[/etc/debian_version]="apt-get"
-osInfo[/etc/alpine-release]="apk"
-osInfo[/etc/centos-release]="yum"
-osInfo[/etc/fedora-release]="dnf"
-osInfo[/etc/arch-release]="pacman"
+# # this is very all of the package manager are placed
+# declare -A osInfo;
+# osInfo[/etc/debian_version]="apt-get"
+# osInfo[/etc/alpine-release]="apk"
+# osInfo[/etc/centos-release]="yum"
+# osInfo[/etc/fedora-release]="dnf"
+# osInfo[/etc/arch-release]="pacman"
 
-#to find the which Os yo are running
-for f in ${!osInfo[@]}
-do
-    if [[ -f $f ]];
-    then
-         package_manager=${osInfo[$f]}
-    fi
-done
+# #to find the which Os yo are running
+# for f in ${!osInfo[@]}
+# do
+#     if [[ -f $f ]];
+#     then
+#          package_manager=${osInfo[$f]}
+#     fi
+# done
 
 #this will load all of the function so that we can acces those function in the Menu or in aother function
 . Terminal_application.sh
 
+#this will import the file check which package manager you are running
 
+. check-manager.sh
 #this will call the arch_System.sh file and all of the function will called in this script
 function terminal_application_menu_arch()
 {

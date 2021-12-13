@@ -1,3 +1,13 @@
+#!/bin/bash
+
+#/**
+# * Mohammad Abdul Rafay Automate Task for Linux
+# * Email: 99marafay@gmail.com
+# */
+
+. GUI_Application.sh
+. GUI_Meun.sh
+
 function multi-media()
 {
     decide='Yes';
@@ -12,7 +22,6 @@ function multi-media()
             1)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install Rythmobox Music Player?." 10 60) 
                 then
-                    . GUI_Application.sh
                     rythmobox
                     multi-media
                 else
@@ -22,7 +31,6 @@ function multi-media()
             2)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install VLC?." 10 60) 
                 then
-                    . GUI_Application.sh
                     vlc
                     multi-media
                 else
@@ -32,7 +40,6 @@ function multi-media()
             3)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install Pluse Audio?." 10 60) 
                 then
-                    . GUI_Application.sh
                     pluseAudio
                     multi-media
                 
@@ -43,10 +50,8 @@ function multi-media()
             4)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install All Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     All-Multi-Media
                     multi-media
-                
                 else
                     whiptail --title "All Applications" --msgbox "No Application are Installed" 8 45;   
                 fi
@@ -54,9 +59,7 @@ function multi-media()
        
         if(decide=="Yes")
         then
-            . GUI_Meun.sh
             GUI_Menu
         fi
     done 
 }
-multi-media

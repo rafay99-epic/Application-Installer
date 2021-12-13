@@ -4,100 +4,11 @@
 # * Email: 99marafay@gmail.com
 # */
 
-# this is very all of the package manager are placed
-declare -A osInfo;
-osInfo[/etc/debian_version]="apt-get"
-osInfo[/etc/alpine-release]="apk"
-osInfo[/etc/centos-release]="yum"
-osInfo[/etc/fedora-release]="dnf"
-osInfo[/etc/arch-release]="pacman"
+#In thissection all the files will be imported from the source
+. splash.sh
+. check-manager.sh
 
-#to find the which Os yo are running
-for f in ${!osInfo[@]}
-do
-    if [[ -f $f ]];
-    then
-         package_manager=${osInfo[$f]}
-    fi
-done
 
-#File location for the snap store
-#FILE=/var/lib/snapd/snaps
-
-#The file location for the flatpak or FlatHib
-#FLATPAK_FILE=/etc/profile.d/flatpak-bindir.sh
-
-#Location for the yay on the arch system
-#YAY_LOCATION=/usr/bin/yay
-
-#these are buildin funtion for the GUI
-function echo_title() {     echo -ne "\033[1;44;37m${*}\033[0m\n"; }
-function echo_caption() {   echo -ne "\033[0;1;44m${*}\033[0m\n"; }
-function echo_bold() {      echo -ne "\033[0;1;34m${*}\033[0m\n"; }
-function echo_danger() {    echo -ne "\033[0;31m${*}\033[0m\n"; }
-function echo_success() {   echo -ne "\033[0;32m${*}\033[0m\n"; }
-function echo_warning() {   echo -ne "\033[0;33m${*}\033[0m\n"; }
-function echo_secondary() { echo -ne "\033[0;34m${*}\033[0m\n"; }
-function echo_info() {      echo -ne "\033[0;35m${*}\033[0m\n"; }
-function echo_primary() {   echo -ne "\033[0;36m${*}\033[0m\n"; }
-function echo_error() {     echo -ne "\033[0;1;31merror:\033[0;31m\t${*}\033[0m\n"; }
-function echo_label() {     echo -ne "\033[0;1;32m${*}:\033[0m\t"; }
-function echo_prompt() {    echo -ne "\033[0;36m${*}\033[0m "; }
-
-#this will create a flash for user or enter baner
-function splash() 
-{
-    local hr;
-    hr=" **$(printf "%${#1}s" | tr ' ' '*')** ";
-    echo_title "${hr}";
-    echo_title " * $1 * ";
-    echo_title "${hr}";
-    
-}
-
-# All of the Store which are required:
-
-#Snap Store
-# function install_Snap_store()
-# {  
-#     if [[ "$package_manager" == "pacman" ]];
-#     then
-#         yay
-#         #echo 'program is working'
-#     elif [[ "$package_manager" == "apt-get" ]];
-#     then 
-#         sudo apt install snapd
-#         sudo snap install snap-store
-#         sudo ln -s /var/lib/snapd/snap /snap   
-#        #echo 'system is debian'
-#     else
-#         whiptail --title "Error" --msgbox "Your OS is Not Supported!!!!" 8 45;
-#         exit 0
-#     fi
-# }
-
-# # Flathub store
-# function flatpak_store()
-# {
-#     if [[ "$package_manager" == "pacman" ]];
-#     then 
-#         sudo pacman -S flatpak
-#        # echo 'program is working'
-#     elif [[ "$package_manager" == "apt-get" ]];
-#     then 
-#          sudo apt install flatpak
-#        #echo 'system is debian'
-#     else
-#         whiptail --title "Error" --msgbox "Your OS is Not Supported!!!!" 8 45;
-#         exit 0
-#     fi
-# }
-
-# #Yay for the Arch Linux.
-# function yay()
-# {
-#     sudo pacman -S yay
-# }
 
 # Update Category
 
@@ -107,16 +18,12 @@ function system_update()
     if [[ "$package_manager" == "pacman" ]];
     then
         sudo pacman -Syyu
-        splash 'System is updated'
-        #whiptail --title "System Updater" --msgbox "Your System is up to date" 8 45;
-       # echo 'program is working'
+        splash  'System is updated'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
         sudo apt-get update
         sudo apt-get upgrade
         splash 'System is Updated'
-        #whiptail --title "System Updater" --msgbox "Your System is up to date" 8 45;
-        #echo 'system is debian'
     else
         echo 'System is Not Supported!!'
         exit 0
@@ -125,71 +32,32 @@ function system_update()
 
 function snap-update()
 {
-    # New code
+    #update all the application that are installed using snap store
     sudo snap refresh
     splash 'Snap Packages are Upto Date'
-
-    # Old Code from version 3.1
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap refresh 
-    #     splash 'Snap Packages are Upto Date'
-    #     #whiptail --title "Snap Packages" --msgbox "Snap Packages are Upto Date." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap refresh 
-    #     splash 'Snap Packages are Upto Date'
-    #     whiptail --title "Snap Packages" --msgbox "Snap Packages are Upto Date." 8 45;
-    # fi
 }
 function flathub-update()
-{
-
-    # New Code
+{   
+    #The command will updateall the application using the flatpak
     sudo flatpak update
     splash 'Flatpak Packages are Upto Date'
-
-    # Old Code from Version 3.1
-
-    # if [ -e "$FLATPAK_FILE" ]; 
-    # then
-    #     sudo flatpak update
-    #     splash 'FlatpHub Packages are Upto Date'
-    #     #whiptail --title "FlatHub Packages" --msgbox "FlatHub Packages are Upto Date." 8 45;
-    # else  
-    #     flatpak_store
-    #     sudo flatpak update
-    #     splash 'FlatpHub Packages are Upto Date'
-    #     #whiptail --title "FlatHub Packages" --msgbox "FlatHub Packages are Upto Date." 8 45;
-    # fi
 }
 function yay-update()
 {
-    # New code 
+    #This will update the yay and all the application
     yay -Syyu
     splash 'Yay Packages are Upto Date'
 
-    # Old Code from Version 3.15
-    
-    # if [ -e "$YAY_LOCATION" ]; 
-    # then
-    #     yay -Syyu
-    #     splash 'Yay Packages are Upto Date'
-    #     #whiptail --title "Yay Packages" --msgbox "Yay Packages are Upto Date." 8 45;
-    # else  
-    #     yay
-    #     yay -Syyu
-    #     splash 'Yay Packages are Upto Date'
-    #     #whiptail --title "Yay Packages" --msgbox "Yay Packages are Upto Date." 8 45;
-    # fi
 }
 #this will update all of the application
 function update-all-system()
 {   
-    system_update
+    
     if [[ "$package_manager" == "pacman" ]];
     then
+        system_update
         yay-update
+        flathub-update
     elif [[ "$package_manager" == "apt-get" ]];
     then 
        snap-update
@@ -220,19 +88,6 @@ function chromum()
     else
         whiptail --title "Allert!!" --msgbox "Sorry The application can not be installed" 8 45;
     fi
-    # Old code
-  
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install chromium
-    #     splash 'Chromium Browser is Installed'
-    #     whiptail --title "Chromium" --msgbox "Chromium is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install chromium
-    #     splash 'Chromium Browser is Installed'
-    #     whiptail --title "Chromium" --msgbox "Chromium is Installed on this system." 8 45;
-    # fi
 }
 #firefox
 function firefox()
@@ -252,19 +107,6 @@ function firefox()
         whiptail --title "Allert!!" --msgbox "Sorry The application can not be installed" 8 45;
     fi
 
-    # Old Code 
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install firefox
-    #     splash 'Firefox Browser is Installed'
-    #     whiptail --title "Firefox" --msgbox "Firefox is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install firefox
-    #     splash 'Firefox Browser is Installed'
-    #     whiptail --title "Firefox" --msgbox "Firefox is Installed on this system." 8 45;
-    # fi
 }
 #brave
 function brave()
@@ -282,19 +124,6 @@ function brave()
     else
         whiptail --title "Allert!!" --msgbox "Sorry The application can not be installed" 8 45;
     fi
-
-    # Old Code from version 3.1
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install brave
-    #     splash 'Brave Browser is Installed'
-    #     whiptail --title "Brave" --msgbox "Brave is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install brave
-    #     splash 'Brave Browser is Installed'
-    #     whiptail --title "Brave" --msgbox "Brave is Installed on this system." 8 45;
-    # fi
 }
 # Google chrome
 function google-chrome()
@@ -343,21 +172,6 @@ function atom()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-
-    #Old Code from Version 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install atom --classic
-    #     splash 'Atom Text Editior is Installed'
-    #     whiptail --title "Atom" --msgbox "Atom is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install atom --classic
-    #     splash 'Atom Text Editior is Installed'
-    #     whiptail --title "Atom" --msgbox "Atom is Installed on this system." 8 45;
-    # fi
 }
 
 # Sublime
@@ -377,20 +191,6 @@ function sublime()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    #Old Code from Version 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install sublime-text --classic
-    #      splash 'Sublime Text Editior is Installed'
-    #     whiptail --title "Sublime Text Editior" --msgbox "Sublime Text Editior is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install sublime-text --classic
-    #      splash 'Sublime Text Editior is Installed'
-    #     whiptail --title "Sublime Text Editior" --msgbox "Sublime Text Editior is Installed on this system." 8 45;
-    # fi
 }
 
 #brackets
@@ -411,21 +211,6 @@ function brackets()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    
-    # old Code from version 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install brackets --classic
-    #     splash 'Brackets Text Editior is Installed'
-    #     whiptail --title "Brackets Text Editior" --msgbox "Brackets Text Editior is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install brackets --classic
-    #     splash 'Brackets Text Editior is Installed'
-    #     whiptail --title "Brackets Text Editior" --msgbox "Brackes Text Editior is Installed on this system." 8 45;
-    # fi
 }
 
 # visual Studio code
@@ -445,20 +230,6 @@ function vs_code()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    #Old Code from Version 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install code --classic
-    #     splash 'Visual Studio Code is Installed'
-    #     whiptail --title "Visual Studio Code" --msgbox "Visual Studio Code is Installed." 8 45;
-    # else 
-    #     install_Snap_store
-    #     sudo snap install code --classic
-    #     splash 'Visual Stidio Code is Installed'
-    #     whiptail --title "Visual Studio Code" --msgbox "Visual Studio Code is Installed." 8 45;
-    # fi
 }
 
 #notion
@@ -478,20 +249,6 @@ function notion()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old Code from version 3.1
-    
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install notion-snap
-    #     splash 'Notion is Installed'
-    #     whiptail --title "Notion" --msgbox "Notion is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install notion-snap
-    #     splash 'Notion is Installed'
-    #     whiptail --title "Notion" --msgbox "Notion is Installed on this system." 8 45;
-    # fi
 }
 
 function All-text-Editior() 
@@ -525,21 +282,6 @@ function vlc()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old Code from version 3.1
-
-    # #
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install vlc
-    #     splash 'VLC Video Players is Installed'
-    #     whiptail --title "VLC Video Player" --msgbox "VLC Video Player is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install vlc
-    #     splash 'VLC Video Players is Installed'
-    #     whiptail --title "VLC Video Player" --msgbox "VLC Video Player is Installed on this system." 8 45;
-    # fi
 }
 
 #pluse Audio
@@ -560,19 +302,6 @@ function pluseAudio()
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
 
-   # Old Code from Version 3.1
-   
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install pulseaudio
-    #     splash 'Pluse Audio is Installed'
-    #     whiptail --title "Pluse Audio" --msgbox "Pluse Audio is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install pulseaudio
-    #     splash 'Pluse Audio is Installed'
-    #     whiptail --title "Pluse Audio" --msgbox "Pluse Audio is Installed on this system." 8 45;
-    # fi
 }
 
 #rythmox
@@ -593,20 +322,6 @@ function rythmobox()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old Code from Version 3.1
-
-    # if [ -e "$FLATPAK_FILE" ]; 
-    # then
-    #     sudo flatpak install flathub org.gnome.Rhythmbox3
-    #     splash 'Rythmobox Audio is Installed'
-    #     whiptail --title "Rythmobox Audio" --msgbox "Rythmobox Audio is Installed on this system." 8 45;
-    # else  
-    #     flatpak_store
-    #     sudo flatpak install flathub org.gnome.Rhythmbox3
-    #     splash 'Rythmobox Audio is Installed'
-    #     whiptail --title "Rythmobox" --msgbox "Rythmobox Audio is Installed on this system." 8 45;
-    # fi  
 }
 function All-Multi-Media()
 {
@@ -622,7 +337,6 @@ function All-Multi-Media()
 function android_studio()
 {
     #New code
-
     if [[ "$package_manager" == "pacman" ]];
     then
         sudo flatpak install flathub com.google.AndroidStudio
@@ -638,21 +352,6 @@ function android_studio()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old Code from Version 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo ln -s /var/lib/snapd/snap /snap
-    #     sudo snap install android-studio --classic
-    #     splash 'Android Studio is Installed'
-    #     whiptail --title "Android Studio" --msgbox "Android Studio is Installed on this system." 8 45;
-    # else 
-    #     install_Snap_store
-    #     sudo snap install android-studio --classic
-    #     splash 'Android Studio is Installed'
-    #     whiptail --title "Android Studio" --msgbox "Android Studio is Installed on this system." 8 45;
-    # fi
 }
 
 #java JDK
@@ -698,43 +397,6 @@ function netbean()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi    
-
-#     Old Code from Version 3.1
-#    
-#     if [[ "$package_manager" == "pacman" ]];
-#     then
-#         if [ -e "$FILE" ]; 
-#         then
-#             sudo ln -s /var/lib/snapd/snap /snap
-#             sudo snap install netbeans --classic
-#             splash 'Neabean is Installed'
-#             whiptail --title "Netbeans" --msgbox "Netbeans is Installed on this system." 8 45;
-#         else 
-#             install_Snap_store
-#             sudo ln -s /var/lib/snapd/snap /snap
-#             sudo snap install netbeans --classic
-#             splash 'Neabean is Installed'
-#             whiptail --title "Netbeans" --msgbox "Netbeans is Installed on this system." 8 45;
-#         fi
-#        #echo 'program is working'
-#     elif [[ "$package_manager" == "apt-get" ]];
-#     then 
-#         if [ -e "$FILE" ]; 
-#         then
-#             sudo snap install netbeans --classic
-#             splash 'Neabean is Installed'
-#             whiptail --title "Netbean" --msgbox "Netbean IDE is Installed." 8 45;
-#         else 
-#             install_Snap_store
-#             sudo snap install netbeans --classic
-#             splash 'Neabean is Installed'
-#             whiptail --title "Netbean" --msgbox "Netbean IDE is Installed." 8 45;
-#         fi
-#        #echo 'system is debian'
-#     else
-#         whiptail --title "Error" --msgbox "Your OS is Not Supported!!!!" 8 45;
-        
-#     fi
 }
 
 #Eclipse
@@ -754,20 +416,6 @@ function eclipse()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-    
-    # Old Code from Version 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install eclipse --classic
-    #     splash 'Eclipse is Installed'
-    #     whiptail --title "Eclipse" --msgbox "Eclipse is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install eclipse --classic
-    #     splash 'Eclipse is Installed'
-    #     whiptail --title "Eclipse" --msgbox "Eclipse is Installed on this system." 8 45;
-    # fi
 }
 
 
@@ -789,20 +437,6 @@ function github_desktop()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old Code from Version 3.15
-    
-    # if [ -e "$FLATPAK_FILE" ]; 
-    # then
-    #     sudo flatpak install flathub io.github.shiftey.Desktop
-    #     splash 'GitHub Desktop is Installed'
-    #     whiptail --title "GitHub Desktop" --msgbox "GitHub Desktop is Installed on this system." 8 45;
-    # else  
-    #     flatpak_store
-    #     sudo flatpak install flathub io.github.shiftey.Desktop
-    #     splash 'GitHub Desktop is Installed'
-    #     whiptail --title "GitHub Desktop" --msgbox "GitHub Desktop is Installed on this system." 8 45;
-    # fi
 }
 
 #pychar
@@ -822,20 +456,6 @@ function pycharm()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old Code from Version 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install pycharm-community --classic
-    #     splash 'Pycharm is Installed'
-    #     whiptail --title "Pycharm" --msgbox "Pycharm is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install pycharm-community --classic
-    #     splash 'Pycharm is Installed'
-    #     whiptail --title "Pycharm" --msgbox "Pycharm is Installed on this system." 8 45;
-    # fi
 }
 
 #Flutter
@@ -856,21 +476,6 @@ function flutter()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-    
-
-
-    # Old Code from Version 3.1 
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install flutter --classic
-    #     splash 'Flutter is Installed'
-    #     whiptail --title "Flutter" --msgbox "Pycharm is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install flutter --classic
-    #     splash 'Flutter is Installed'
-    #     whiptail --title "Flutter" --msgbox "Pycharm is Installed on this system." 8 45;
-    # fi  
 }
 
 #Powershell
@@ -899,43 +504,6 @@ function powershell()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old Code from version 3.1
-
-    # if [[ "$package_manager" == "pacman" ]];
-    # then
-    #     if [ -e "$YAY_LOCATION" ]; 
-    #     then
-    #         sudo yay -S powershell-bin  
-    #         splash 'Power Shell is Installed'
-    #         whiptail --title "Power Shell" --msgbox "Power Shell is Installed on this system." 8 45;
-    #     else  
-    #         yay
-    #         sudo yay -S powershell-bin  
-    #         splash 'Power Shell is Installed'
-    #         whiptail --title "Power Shell" --msgbox "Power Shell is Installed on this system." 8 45;
-    #     fi
-    #    # echo 'program is working'
-    # elif [[ "$package_manager" == "apt-get" ]];
-    # then 
-    #     # Update the list of packages
-    #     sudo apt-get update
-    #     # Install pre-requisite packages.
-    #     sudo apt-get install -y wget apt-transport-https software-properties-common
-    #     # Download the Microsoft repository GPG keys
-    #     wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
-    #     # Register the Microsoft repository GPG keys
-    #     sudo dpkg -i packages-microsoft-prod.deb
-    #     # Update the list of products
-    #     sudo apt-get update
-    #     # Enable the "universe" repositories
-    #     sudo add-apt-repository universe
-    #     # Install PowerShell
-    #     sudo apt-get install -y powershell 
-    #    #echo 'system is debian'
-    # else
-    #     whiptail --title "Error" --msgbox "Your OS is Not Supported!!!!" 8 45;
-    # fi
 }
 
 # python3
@@ -1001,20 +569,6 @@ function only_office()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old code from version 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install onlyoffice-desktopeditors
-    #     splash 'Only Office Suite is Installed'
-    #     whiptail --title "Only Office Suite" --msgbox "Only Office Suite is Installed on this system." 8 45;
-    # else 
-    #     install_Snap_store
-    #     sudo snap install onlyoffice-desktopeditors
-    #     splash 'Only Office Suite is Installed'
-    #     whiptail --title "Only Office Suite" --msgbox "Only Office Suite is Installed on this system." 8 45;
-    # fi
 }
 
 # Libre Office
@@ -1034,20 +588,6 @@ function libreoffice()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old Code from Version 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install libreoffice
-    #     splash 'Libre Office is Installed'
-    #     whiptail --title "Libre Office" --msgbox "Libre Office is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install libreoffice
-    #     splash 'Libre Office is Installed'
-    #     whiptail --title "Libre Office" --msgbox "Libre Office is Installed on this system." 8 45;
-    # fi
 }
 
 #WPS Suite
@@ -1068,19 +608,6 @@ function WPS()
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
 
-    # Old Code from version 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install wps-2019-snap
-    #     splash 'WPS Office is Installed'
-    #     whiptail --title "WPS Office" --msgbox "WPS Office is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install wps-2019-snap
-    #     splash 'WPS Office is Installed'
-    #     whiptail --title "WPS Office" --msgbox "WPS Office is Installed on this system." 8 45;
-    # fi
 }
 
 # Conference Call Category
@@ -1133,21 +660,6 @@ function discord()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old Code from version 3.1
-
-#     if [ -e "$FILE" ]; 
-#     then
-#         sudo snap install discord
-#         splash 'Discord is Installed'
-#         whiptail --title "Discord" --msgbox "Discord is Installed." 8 45;
-#     else 
-#         install_Snap_store
-#         splash 'Discord is Installed'
-#         sudo snap install discord
-#         whiptail --title "Discord" --msgbox "Discord is Installed." 8 45;
-#     fi
-
 }
 
 #Microsoft Teams
@@ -1167,20 +679,6 @@ function ms_teams()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old Code from Version 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install teams
-    #     splash 'Microsoft Teams is Installed'
-    #     whiptail --title "Microsoft Teams" --msgbox "Microsoft Teams is Installed." 8 45;
-    # else 
-    #     install_Snap_store
-    #     sudo snap install teams
-    #     splash 'Microsft Teams is Installed'
-    #     whiptail --title "Microsoft Teams" --msgbox "Microsoft Teams is Installed." 8 45;
-    # fi
 }
 
 #Zoom
@@ -1201,20 +699,6 @@ function zoom()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old Code from Version 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install zoom-client
-    #     splash 'Zoom is Installed'
-    #     whiptail --title "Zoom" --msgbox "Zoom is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install zoom-client
-    #     splash 'Zoom is Installed'
-    #     whiptail --title "Zoom" --msgbox "Zoom is Installed on this system." 8 45;
-    # fi
 }
 
 #Signal Desktop
@@ -1234,20 +718,6 @@ function signal-desktop()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old Code from Version 3.1
-    
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install signal-desktop
-    #     splash 'Signal Desktop is Installed'
-    #     whiptail --title "Signal Desktop" --msgbox "Signal Desktop is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install signal-desktop
-    #     splash 'Signal Desktop is Installed'
-    #     whiptail --title "Signal Desktop" --msgbox "Signal Desktop is Installed on this system." 8 45;
-    # fi
 }
 
 #Telegram Desktop
@@ -1268,20 +738,6 @@ function telegram-desktop()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-        
-    # Old Code from verion 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install telegram-desktop
-    #     splash 'Telegram Desktop is Installed'
-    #     whiptail --title "Telegram Desktop" --msgbox "Telegram Desktop is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install telegram-desktop
-    #     splash 'Telegram Desktop is Installed'
-    #     whiptail --title "Telegram Desktop" --msgbox "Telegram Desktop is Installed on this system." 8 45;
-    # fi  
 }
 
 
@@ -1313,20 +769,6 @@ function obs()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old Code from Version 3.1
-
-#     if [ -e "$FILE" ]; 
-#     then
-#         sudo snap install obs-studio
-#         splash 'OBS is Installed'
-#         whiptail --title "OBS" --msgbox "OBS is Installed on this system." 8 45;
-#     else  
-#         install_Snap_store
-#         sudo snap install obs-studio
-#         splash 'OBS is Installed'
-#         whiptail --title "OBS" --msgbox "OBS is Installed on this system." 8 45;
-#     fi    
 }
 
 # KDenlive
@@ -1347,20 +789,6 @@ function kdenlive()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-    
-    # Old Code
-    
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install kdenlive
-    #     splash 'Kdenlive is Installed'
-    #     whiptail --title "Kdenlive" --msgbox "Kdenlive is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install kdenlive
-    #     splash 'Kdenlive is Installed'
-    #     whiptail --title "Kdenlive" --msgbox "Kdenlive is Installed on this system." 8 45;
-    # fi
 }
 
 #gimp
@@ -1380,19 +808,6 @@ function gimp()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old Code from version 3.1
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install gimp
-    #     splash 'GIMP is Installed'
-    #     whiptail --title "GIMP" --msgbox "GIMP is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install gimp
-    #     splash 'GIMP is Installed'
-    #     whiptail --title "GIMP" --msgbox "GIMP is Installed on this system." 8 45;
-    # fi
 }
 
 #blender
@@ -1412,20 +827,6 @@ function blender()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-    
-    # Old Code from version 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install blender --classic
-    #     splash 'Blender is Installed'
-    #     whiptail --title "Blender" --msgbox "Blender is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install blender --classic
-    #     splash 'Blender is Installed'
-    #     whiptail --title "Blender" --msgbox "Blender is Installed on this system." 8 45;
-    # fi
 }
 
 
@@ -1456,20 +857,6 @@ function spotify()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old Code
-
-    # if [ -e "$FILE" ]; 
-    # then       
-    #     sudo snap install spotify
-    #     splash 'Spotify is Installed'
-    #     whiptail --title "Spotify" --msgbox "spotify is Installed on this system." 8 45;
-    # else 
-    #     install_Snap_store
-    #     sudo snap install spotify
-    #     splash 'Spotify is Installed'
-    #     whiptail --title "Spotify" --msgbox "Spotify is Installed on this system." 8 45;
-    # fi
 }
 
 # Audacity
@@ -1489,20 +876,6 @@ function audacity()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old Code from version 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install audacity
-    #     splash 'Audacity is Installed'
-    #     whiptail --title "Audacity" --msgbox "Audacity is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install audacity
-    #     splash 'Audacity is Installed'
-    #     whiptail --title "Audacity" --msgbox "Audacity is Installed on this system." 8 45;
-    # fi
 }
 
 #Plex Media Server
@@ -1522,20 +895,6 @@ function plex-media-server()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-    
-    # Old code from Version 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install plexmediaserver
-    #     splash 'Plex Media Server is Installed'
-    #     whiptail --title "Plex Media Server" --msgbox "Plex Media Server is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install plexmediaserver
-    #     splash 'Plex Media Server is Installed'
-    #     whiptail --title "Plex Media Server" --msgbox "Plex Media Server is Installed on this system." 8 45;
-    # fi    
 }
 
 # Cloud Service Category
@@ -1576,20 +935,6 @@ function next-cloud()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old code from version 3.1
-    
-#     if [ -e "$FILE" ]; 
-#     then
-#         sudo snap install audacity
-#         splash 'Next Cloud is Installed'
-#         whiptail --title "Next Cloud" --msgbox "Next Cloud is Installed on this system." 8 45;
-#     else  
-#         install_Snap_store
-#         sudo snap install audacity
-#         splash 'Next Cloud is Installed'
-#         whiptail --title "Next Cloud" --msgbox "Next Cloud is Installed on this system." 8 45;
-#     fi
 }
 
 function google--sdk-cloud()
@@ -1608,20 +953,6 @@ function google--sdk-cloud()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old code from version 3.1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install google-cloud-sdk --classic
-    #     splash 'Google SDK Cloud is Installed'
-    #     whiptail --title "Google SDK Cloud" --msgbox "Google SDK Cloud is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install google-cloud-sdk --classic
-    #     splash 'Google SDK Cloud is Installed'
-    #     whiptail --title "Google SDK Cloud" --msgbox "Google SDK Cloud is Installed on this system." 8 45;
-    # fi
 }
 
 
@@ -1651,20 +982,6 @@ function bitwarden()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-    # Old code from version 3.1
-    
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install bitwarden
-    #     splash 'Bitwarden is Installed'
-    #     whiptail --title "Bitwarden" --msgbox "Bitwarden is Installed on this system." 8 45;
-    # else 
-    #     install_Snap_store 
-    #     sudo snap install bitwarden
-    #     splash 'Bitwarden is Installed'
-    #     whiptail --title "Bitwarden" --msgbox "Bitwarden is Installed on this system." 8 45;
-    # fi
 }
 
 #mail Spring
@@ -1684,23 +1001,6 @@ function mailspring()
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
     fi
-
-
-
-
-    #Old Code from Version 3,1
-
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install mailspring
-    #     splash 'MailSpring is Installed'
-    #     whiptail --title "MailSpring" --msgbox "MailSpring is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install mailspring
-    #     splash 'MailSpring is Installed'
-    #     whiptail --title "MailSpring" --msgbox "MailSpring is Installed on this system." 8 45;
-    # fi
 }
 #slack
 function slack()
@@ -1718,21 +1018,7 @@ function slack()
         whiptail --title "Slack" --msgbox "Slack is Installed on this system." 8 45;
     else
         whiptail --title "Error" --msgbox "Application can be Installed on this system" 8 45;
-    fi
-
-    # Old Code from Version 3.1
- 
-    # if [ -e "$FILE" ]; 
-    # then
-    #     sudo snap install slack --classic
-    #     splash 'Slack is Installed'
-    #     whiptail --title "Slack" --msgbox "Slack is Installed on this system." 8 45;
-    # else  
-    #     install_Snap_store
-    #     sudo snap install slack --classic
-    #     splash 'Slack is Installed'
-    #     whiptail --title "Slack" --msgbox "Slack is Installed on this system." 8 45;
-    # fi    
+    fi   
 }
 
 # stacer

@@ -1,3 +1,14 @@
+#!/bin/bash
+
+#/**
+# * Mohammad Abdul Rafay Automate Task for Linux
+# * Email: 99marafay@gmail.com
+# */
+
+. GUI_Application.sh
+. GUI_Meun.sh
+
+
 function Office-Category()
 {
     decide='Yes';
@@ -12,7 +23,6 @@ function Office-Category()
             1)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     WPS
                     Office-Category
                 else                   
@@ -22,7 +32,6 @@ function Office-Category()
             2)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     only_office
                     Office-Category
                 else                   
@@ -32,7 +41,6 @@ function Office-Category()
             3)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     libreoffice
                     Office-Category
                 else                   
@@ -42,7 +50,6 @@ function Office-Category()
             4)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install All Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     All-Office
                     Office-Category
                 
@@ -53,7 +60,6 @@ function Office-Category()
        
         if(decide=="Yes")
         then
-            . GUI_Meun.sh
             GUI_Menu
         fi
     done 

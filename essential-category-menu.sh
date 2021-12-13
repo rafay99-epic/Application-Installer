@@ -1,20 +1,17 @@
+#!/bin/bash
 
-# this is very all of the package manager are placed
-declare -A osInfo;
-osInfo[/etc/debian_version]="apt-get"
-osInfo[/etc/alpine-release]="apk"
-osInfo[/etc/centos-release]="yum"
-osInfo[/etc/fedora-release]="dnf"
-osInfo[/etc/arch-release]="pacman"
+#/**
+# * Mohammad Abdul Rafay Automate Task for Linux
+# * Email: 99marafay@gmail.com
+# */
 
-#to find the which Os yo are running
-for f in ${!osInfo[@]}
-do
-    if [[ -f $f ]];
-    then
-         package_manager=${osInfo[$f]}
-    fi
-done
+
+
+#this will import the file check which package manager you are running
+. check-manager.sh
+. GUI_Application.sh
+. GUI_Meun.sh
+
 
 function essential()
 {
@@ -32,7 +29,6 @@ function essential()
             1)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     bitwarden
                     essential
                 else                   
@@ -42,7 +38,6 @@ function essential()
             2)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     mailspring
                     essential
                 else                   
@@ -52,7 +47,6 @@ function essential()
             3)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     slack
                     essential
                 else                   
@@ -62,7 +56,6 @@ function essential()
             4)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install All Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     All-All-essencial
                     essential
                 else
@@ -72,7 +65,6 @@ function essential()
        
         if(decide=="Yes")
         then
-            . GUI_Meun.sh
             GUI_Menu
         fi
     done
@@ -91,7 +83,6 @@ function essential()
             1)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     bitwarden
                     essential
                 else                   
@@ -101,7 +92,6 @@ function essential()
             2)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     mailspring
                     essential
                 else                   
@@ -111,7 +101,6 @@ function essential()
             3)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     stacer
                     essential
                 else                   
@@ -122,7 +111,6 @@ function essential()
             4)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     slack
                     essential
                 else                   
@@ -132,7 +120,6 @@ function essential()
             5)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install All Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     All-All-essencial
                     essential
                 else
@@ -142,16 +129,11 @@ function essential()
        
         if(decide=="Yes")
         then
-            . GUI_Meun.sh
             GUI_Menu
         fi
     done
     else
         echo 'Importamt compoent is not Installed!!!!'
         exit 0
-    fi
-
-
-
-     
+    fi   
 }

@@ -5,7 +5,10 @@
 # * Email: 99marafay@gmail.com
 # */
 
-
+. GUI_Meun.sh 
+. Terminal-Application-Menu.sh
+. splash.sh
+. startup.sh
 function controller_Menu()
 {
     while :; do
@@ -16,7 +19,6 @@ function controller_Menu()
                 1)
                     if (whiptail --title "Alert!!" --yesno "Are you sure?." 10 60) 
                     then
-                        . GUI_Meun.sh        
                         GUI_Menu
                     else
                         whiptail --title "Alert!!" --msgbox "Choose Again!!!" 8 45;
@@ -26,7 +28,6 @@ function controller_Menu()
                 2)
                     if (whiptail --title "Alert!!" --yesno "Are you sure?." 10 60) 
                     then
-                        . Terminal-Application-Menu.sh
                         terminal_application_menu_arch 
                     else
                         whiptail --title "Alert!!" --msgbox "Choose Again!!!" 8 45;
@@ -38,11 +39,9 @@ function controller_Menu()
         textexit="Yes"
         if (textexit=="Yes") 
         then
-            remove_Permisiion
-            . splash.sh
+            reboot_section
             splash 'BYE!!! Have a Good Day.'
             exit 0
          fi
     done
 }
-controller_Menu

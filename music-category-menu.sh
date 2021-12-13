@@ -1,3 +1,13 @@
+#!/bin/bash
+
+#/**
+# * Mohammad Abdul Rafay Automate Task for Linux
+# * Email: 99marafay@gmail.com
+# */
+
+. GUI_Application.sh
+. GUI_Meun.sh
+
 function music-category-Menu()
 {
      decide='Yes';
@@ -12,7 +22,6 @@ function music-category-Menu()
             1)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     spotify
                     music-category-Menu
                 else                   
@@ -22,7 +31,6 @@ function music-category-Menu()
             2)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     audacity
                     music-category-Menu
                 else                   
@@ -32,7 +40,6 @@ function music-category-Menu()
             3)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                    plex-media-server
                    music-category-Menu
                 else                   
@@ -42,7 +49,6 @@ function music-category-Menu()
             4)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install All Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     All-Music
                     music-category-Menu
                 
@@ -53,7 +59,6 @@ function music-category-Menu()
        
         if(decide=="Yes")
         then
-            . GUI_Meun.sh
             GUI_Menu
         fi
     done 

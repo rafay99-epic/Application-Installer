@@ -1,3 +1,13 @@
+#!/bin/bash
+
+#/**
+# * Mohammad Abdul Rafay Automate Task for Linux
+# * Email: 99marafay@gmail.com
+# */
+
+. GUI_Application.sh
+. GUI_Meun.sh
+
 function category_Menu()
 {
     decide='Yes';
@@ -13,7 +23,6 @@ function category_Menu()
             1)
                 if (whiptail --title "Chromium Browser" --yesno "Are you sure you want to Install Chromium Browser" 10 60) 
                 then
-                    . GUI_Application.sh
                     chromum
                     category_Menu
                 else
@@ -23,7 +32,6 @@ function category_Menu()
             2)
                 if (whiptail --title "Firefox" --yesno "Do you want to Install Firefox Browser." 10 60) 
                 then
-                    . GUI_Application.sh
                     firefox
                     category_Menu
                 else
@@ -33,7 +41,6 @@ function category_Menu()
             3)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install Brave Browser?." 10 60) 
                 then
-                    . GUI_Application.sh
                     brave
                     category_Menu
                 else
@@ -43,7 +50,6 @@ function category_Menu()
             4)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install Google Chrome?." 10 60) 
                 then
-                    . GUI_Application.sh
                     google-chrome
                     category_Menu
                 else
@@ -53,7 +59,6 @@ function category_Menu()
             5)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install All Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     All_Browser
                     category_Menu
                 
@@ -64,10 +69,8 @@ function category_Menu()
        
         if(decide=="Yes")
         then
-            . GUI_Meun.sh
             GUI_Menu
             
         fi
     done 
 }
-category_Menu

@@ -8,23 +8,11 @@
 
 # this will install and check for all of the compoents for the script.
 
+. splash.sh
 
-# this is very all of the package manager are placed
-declare -A osInfo;
-osInfo[/etc/debian_version]="apt-get"
-osInfo[/etc/alpine-release]="apk"
-osInfo[/etc/centos-release]="yum"
-osInfo[/etc/fedora-release]="dnf"
-osInfo[/etc/arch-release]="pacman"
+#this will import the file check which package manager you are running
+. check-manager.sh
 
-#to find the which Os yo are running
-for f in ${!osInfo[@]}
-do
-    if [[ -f $f ]];
-    then
-         package_manager=${osInfo[$f]}
-    fi
-done
 
 #File location for the snap store
 SNAP=/var/lib/snapd/snaps
@@ -47,30 +35,6 @@ GIT=/usr/bin/git
 #Location for the curl
 CURL=/usr/bin/curl
 
-#these are buildin funtion for the GUI
-function echo_title() {     echo -ne "\033[1;44;37m${*}\033[0m\n"; }
-function echo_caption() {   echo -ne "\033[0;1;44m${*}\033[0m\n"; }
-function echo_bold() {      echo -ne "\033[0;1;34m${*}\033[0m\n"; }
-function echo_danger() {    echo -ne "\033[0;31m${*}\033[0m\n"; }
-function echo_success() {   echo -ne "\033[0;32m${*}\033[0m\n"; }
-function echo_warning() {   echo -ne "\033[0;33m${*}\033[0m\n"; }
-function echo_secondary() { echo -ne "\033[0;34m${*}\033[0m\n"; }
-function echo_info() {      echo -ne "\033[0;35m${*}\033[0m\n"; }
-function echo_primary() {   echo -ne "\033[0;36m${*}\033[0m\n"; }
-function echo_error() {     echo -ne "\033[0;1;31merror:\033[0;31m\t${*}\033[0m\n"; }
-function echo_label() {     echo -ne "\033[0;1;32m${*}:\033[0m\t"; }
-function echo_prompt() {    echo -ne "\033[0;36m${*}\033[0m "; }
-
-#this will create a flash for user or enter baner
-function splash() 
-{
-    local hr;
-    hr=" **$(printf "%${#1}s" | tr ' ' '*')** ";
-    echo_title "${hr}";
-    echo_title " * $1 * ";
-    echo_title "${hr}";
-    
-}
 
 #check for the snap store
 function snap()
@@ -202,8 +166,6 @@ function curl()
         exit 0
     fi
 }
-
-
 
 function call-method()
 {

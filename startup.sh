@@ -5,71 +5,14 @@
 # * Email: 99marafay@gmail.com
 # */
 
-# this is very all of the package manager are placed
-declare -A osInfo;
-osInfo[/etc/debian_version]="apt-get"
-osInfo[/etc/alpine-release]="apk"
-osInfo[/etc/centos-release]="yum"
-osInfo[/etc/fedora-release]="dnf"
-osInfo[/etc/arch-release]="pacman"
+#this will import the splash.sh file
+. splash.sh
 
-#to find the which Os yo are running
-for f in ${!osInfo[@]}
-do
-    if [[ -f $f ]];
-    then
-         package_manager=${osInfo[$f]}
-    fi
-done
+#this will import the file check which package manager you are running
+. check-manager.sh
 
 
-#these are buildin funtion for the GUI
-function echo_title() {     echo -ne "\033[1;44;37m${*}\033[0m\n"; }
-function echo_caption() {   echo -ne "\033[0;1;44m${*}\033[0m\n"; }
-function echo_bold() {      echo -ne "\033[0;1;34m${*}\033[0m\n"; }
-function echo_danger() {    echo -ne "\033[0;31m${*}\033[0m\n"; }
-function echo_success() {   echo -ne "\033[0;32m${*}\033[0m\n"; }
-function echo_warning() {   echo -ne "\033[0;33m${*}\033[0m\n"; }
-function echo_secondary() { echo -ne "\033[0;34m${*}\033[0m\n"; }
-function echo_info() {      echo -ne "\033[0;35m${*}\033[0m\n"; }
-function echo_primary() {   echo -ne "\033[0;36m${*}\033[0m\n"; }
-function echo_error() {     echo -ne "\033[0;1;31merror:\033[0;31m\t${*}\033[0m\n"; }
-function echo_label() {     echo -ne "\033[0;1;32m${*}:\033[0m\t"; }
-function echo_prompt() {    echo -ne "\033[0;36m${*}\033[0m "; }
 
-#this will create a flash for user or enter baner
-function splash() 
-{
-    local hr;
-    hr=" **$(printf "%${#1}s" | tr ' ' '*')** ";
-    echo_title "${hr}";
-    echo_title " * $1 * ";
-    echo_title "${hr}";
-    
-}
-
-# this is very all of the package manager are placed
-declare -A osInfo;
-osInfo[/etc/debian_version]="apt-get"
-osInfo[/etc/alpine-release]="apk"
-osInfo[/etc/centos-release]="yum"
-osInfo[/etc/fedora-release]="dnf"
-osInfo[/etc/arch-release]="pacman"
-
-#to check the root access
-#application will not run without root access
-function check_root()
-{
-    #this will check for root
-    ROOT_UID=0
-    if [[ ! "${UID}" -eq "${ROOT_UID}" ]]; then
-        # Error message 
-        whiptail --msgbox --title "ALert!!" "Run me as root, Try sudo ./startup.sh" 20 78;
-       # echo_error 'Run me as root.';
-       # echo_info 'try sudo ./install.sh';
-        exit 1
-    fi
-}
 
 function give_permission()
 {
@@ -94,6 +37,7 @@ function give_permission()
     chmod +x music-category-menu.sh
     chmod +x office-category-menu.sh
     chmod +x text-editior-category-meun.sh
+    chmod +x check-manager.sh
 }
 function remove_Permisiion()
 {
@@ -119,6 +63,7 @@ function remove_Permisiion()
     chmod -x music-category-menu.sh
     chmod -x office-category-menu.sh
     chmod -x text-editior-category-meun.sh
+    chmod -x check-manager.sh
 }
 
 function check_Files()
@@ -139,31 +84,32 @@ function check_Files()
 
 function startup_message()
 {
-    splash 'Welcome To Application Installer for Linux
+    splash 'Welcome To Application Installer
     Name: Mohammad Abdul Rafay 
     Email: 99marafay@gmail.com'
     echo ''
 }
 
-function check_OS()
+function reboot_section()
 {
-    #this will check for root, if root access is not given it will exit the application
-    check_root
+    echo "A Reboot is Required"
+    echo "Enter yes for a rebbot and no to Exit the applications"
+    read -p 'Enter Your Choice: ' user_choice
 
-    if [[ "$package_manager" == "pacman" ]];
-    then
-        startup
-    elif [[ "$package_manager" == "apt-get" ]];
+    if [[ "$user_choice" == "yes" || "$user_choice" == "Yes" || "$user_choice" == "YES" || "$user_choice" == "yEs" || "$user_choice" == "yeS"  ]];
     then 
-        startup
+        remove_Permisiion
+        echo "Enter your user Password for reboot"
+        reboot
+    elif [[ "$user_choice" == "no" || "$user_choice" == "No" || "$user_choice" == "nO" || "$user_choice" == "NO" ]];
+    then
+        remove_Permisiion
+        exit
     else
-        whiptail --title "Error" --msgbox "Your Package Manager is not Supported" 8 45;
-        exit 0
+        remove_Permisiion
+        exit
     fi
 }
-
-
-
 
 #this is the starting point of the application
 function startup()
@@ -183,5 +129,3 @@ function startup()
     . check_Internet.sh
    
 }
-#this is the starting point
-check_OS

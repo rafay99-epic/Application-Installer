@@ -1,3 +1,10 @@
+#!/bin/bash
+
+#/**
+# * Mohammad Abdul Rafay Automate Task for Linux
+# * Email: 99marafay@gmail.com
+# */
+
 #these are buildin funtion for the GUI
 function echo_title() {     echo -ne "\033[1;44;37m${*}\033[0m\n"; }
 function echo_caption() {   echo -ne "\033[0;1;44m${*}\033[0m\n"; }

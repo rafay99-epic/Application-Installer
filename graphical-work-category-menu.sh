@@ -1,3 +1,14 @@
+#!/bin/bash
+
+#/**
+# * Mohammad Abdul Rafay Automate Task for Linux
+# * Email: 99marafay@gmail.com
+# */
+
+#this section will be importing files from the source
+. GUI_Application.sh
+. GUI_Meun.sh
+
 function graphical-work()
 {
     decide='Yes';
@@ -13,7 +24,6 @@ function graphical-work()
             1)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     obs
                     graphical-work
                 else                   
@@ -23,7 +33,6 @@ function graphical-work()
             2)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     kdenlive
                     graphical-work
                 else                   
@@ -33,7 +42,6 @@ function graphical-work()
             3)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     blender
                     graphical-work
                 else                   
@@ -43,7 +51,6 @@ function graphical-work()
             4)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     gimp
                     graphical-work
                 else                   
@@ -53,7 +60,6 @@ function graphical-work()
             5)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install All Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     All-graphic
                     graphical-work
                 
@@ -64,7 +70,6 @@ function graphical-work()
        
         if(decide=="Yes")
         then
-            . GUI_Meun.sh
             GUI_Menu
         fi
     done 

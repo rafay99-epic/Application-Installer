@@ -4,6 +4,19 @@
 # * Email: 99marafay@gmail.com
 # */
 
+. Browser.sh
+. text-editior-category-meun.sh
+. MultiMedia-category.sh
+. Development-tools.sh
+. office-category-menu.sh
+. conference-call-menu.sh
+. graphical-work-category-menu.sh
+. music-category-menu.sh
+. cloud-service-category-menu.sh
+. essential-category-menu.sh
+. Games-category-menu.sh
+. GUI_Application.sh
+. controller_Menu.sh
 
 function GUI_Menu()
 {
@@ -27,7 +40,6 @@ function GUI_Menu()
             1)
                 if (whiptail --title "Browser Category" --yesno "Are you sure you want to Enter?" 10 60) 
                 then
-                   . Browser.sh
                    category_Menu
                     GUI_Menu
                 else
@@ -37,7 +49,6 @@ function GUI_Menu()
             2)
                 if (whiptail --title "Text Editior" --yesno "Are you sure you want to Enter?" 10 60) 
                 then
-                    . text-editior-category-meun.sh
                     text-editior-category
                     GUI_Menu
                 else
@@ -47,7 +58,6 @@ function GUI_Menu()
             3)
                 if (whiptail --title "Multi- Media Category" --yesno "Are you sure you want to Enter?" 10 60) 
                 then
-                    . MultiMedia-category.sh
                     multi-media
                     GUI_Menu
                 else
@@ -57,7 +67,6 @@ function GUI_Menu()
             4)
                 if (whiptail --title "Development Tools" --yesno "Are you sure you want to Enter?." 10 60) 
                 then
-                    . Development-tools.sh
                     Development-tools
                     GUI_Menu
                 else
@@ -67,7 +76,6 @@ function GUI_Menu()
             5)
                 if (whiptail --title "Office Suite" --yesno "Are you sure you want to Enter?." 10 60) 
                 then
-                    . office-category-menu.sh
                     Office-Category
                     GUI_Menu
                 else
@@ -77,7 +85,6 @@ function GUI_Menu()
             6)
                 if (whiptail --title "Conference Call Category" --yesno "Are you sure you want to Enter?." 10 60) 
                 then
-                    . conference-call-menu.sh
                     conferences
                     GUI_Menu
                 else
@@ -87,7 +94,6 @@ function GUI_Menu()
             7)
                 if (whiptail --title "Graphical Category" --yesno "Are you sure you want to Enter?." 10 60) 
                 then
-                    . graphical-work-category-menu.sh
                     graphical-work
                     GUI_Menu
                 else
@@ -97,7 +103,6 @@ function GUI_Menu()
             8)
                 if (whiptail --title "Music Category" --yesno "Are you sure you want to Enter?." 10 60) 
                 then
-                    . music-category-menu.sh
                     music-category-Menu
                     GUI_Menu
                 else
@@ -107,7 +112,6 @@ function GUI_Menu()
             9)
                 if (whiptail --title "Cloud Service Category" --yesno "Are you sure you want to Enter?." 10 60) 
                 then
-                    . cloud-service-category-menu.sh
                     cloud-service
                     GUI_Menu
                 else
@@ -117,7 +121,6 @@ function GUI_Menu()
             10)
                 if (whiptail --title "Essentical Apps Category" --yesno "Are you sure you want to Enter?." 10 60) 
                 then
-                    . essential-category-menu.sh
                     essential
                     GUI_Menu
                 else
@@ -126,8 +129,7 @@ function GUI_Menu()
                 ;;
             11)
                 if (whiptail --title "Games Category" --yesno "Are you sure you want to Enter?." 10 60) 
-                then
-                    . Games-category-menu.sh
+                then   
                     games
                     GUI_Menu
                 else
@@ -137,7 +139,6 @@ function GUI_Menu()
             12)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install All Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     All_Application
                     GUI_Menu
                 
@@ -148,9 +149,7 @@ function GUI_Menu()
        
         if(decide=="Yes")
         then
-            . controller_Menu.sh
             controller_Menu
         fi
     done 
 }
-GUI_Menu

@@ -1,3 +1,13 @@
+#!/bin/bash
+
+#/**
+# * Mohammad Abdul Rafay Automate Task for Linux
+# * Email: 99marafay@gmail.com
+# */
+
+. GUI_Application.sh
+. GUI_Meun.sh
+
 function text-editior-category()
 {
     decide='Yes';
@@ -14,7 +24,6 @@ function text-editior-category()
             1)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install Sublime Text Editor?." 10 60) 
                 then
-                    . GUI_Application.sh
                     sublime
                     text-editior-category
                 else
@@ -24,7 +33,6 @@ function text-editior-category()
             2)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install Visual Studio Code?." 10 60) 
                 then
-                    . GUI_Application.sh
                     vs_code
                     text-editior-category
                 else
@@ -34,7 +42,6 @@ function text-editior-category()
             3)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install brackets Text Editor?." 10 60) 
                 then
-                    . GUI_Application.sh
                     brackets
                     text-editior-category
                 else
@@ -44,7 +51,6 @@ function text-editior-category()
             4)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install Atom?." 10 60) 
                 then
-                    . GUI_Application.sh
                     atom
                     text-editior-category
                 else
@@ -54,7 +60,6 @@ function text-editior-category()
             5)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install Notion?." 10 60) 
                 then
-                    . GUI_Application.sh
                     notion
                     text-editior-category
                 else
@@ -64,7 +69,6 @@ function text-editior-category()
             6)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install All Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     All-text-Editior
                     text-editior-category
                 
@@ -75,7 +79,6 @@ function text-editior-category()
        
         if(decide=="Yes")
         then
-            . GUI_Meun.sh
             GUI_Menu
         fi
     done 

@@ -1,3 +1,14 @@
+#!/bin/bash
+
+#/**
+# * Mohammad Abdul Rafay Automate Task for Linux
+# * Email: 99marafay@gmail.com
+# */
+
+#In this section all of the files will imported from the source directory
+. GUI_Application.sh
+. GUI_Meun.sh
+
 function Development-tools()
 {
     decide='Yes';
@@ -18,7 +29,6 @@ function Development-tools()
             1)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install Android Studio?." 10 60) 
                 then
-                    . GUI_Application.sh
                     android_studio
                     Development-tools
                 else
@@ -28,7 +38,6 @@ function Development-tools()
             2)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install Netbean?." 10 60) 
                 then
-                    . GUI_Application.sh
                     netbean
                     Development-tools
                 else
@@ -38,7 +47,6 @@ function Development-tools()
             3)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install GitHub Desktop Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     github_desktop
                     Development-tools
                 
@@ -49,7 +57,6 @@ function Development-tools()
             4)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install Pycharm?." 10 60) 
                 then
-                    . GUI_Application.sh
                     pycharm
                     Development-tools   
                 else                   
@@ -59,7 +66,6 @@ function Development-tools()
             5)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     eclipse
                     Development-tools
                 else                   
@@ -69,7 +75,6 @@ function Development-tools()
             6)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     flutter
                     Development-tools
                 else                   
@@ -79,7 +84,6 @@ function Development-tools()
             7)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     powershell
                     Development-tools
                 else                   
@@ -89,7 +93,6 @@ function Development-tools()
             8)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     java_JDK
                     Development-tools
                 else                   
@@ -99,7 +102,6 @@ function Development-tools()
             9)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install this Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     python
                     Development-tools
                 else                   
@@ -109,7 +111,6 @@ function Development-tools()
             10)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install All Application?." 10 60) 
                 then
-                    . GUI_Application.sh
                     All-Devloper
                     Development-tools
                 
@@ -120,7 +121,6 @@ function Development-tools()
        
         if(decide=="Yes")
         then
-            . GUI_Meun.sh
             GUI_Menu
         fi
     done 

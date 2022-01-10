@@ -5,12 +5,14 @@
 # * Email: 99marafay@gmail.com
 # */
 
-. GUI_Application.sh
-. GUI_Meun.sh
 
 
 function Office-Category()
 {
+    #In this part of all the important compoent will be included by callingother files
+    . GUI_Application.sh
+    . GUI_Meun.sh
+
     decide='Yes';
     while :; do
         

@@ -7,12 +7,10 @@
 
 #this section will be importing all of the oyher files which are required
 . splash.sh 
-. check_Compoents.sh
-. choose_Distro.sh
-. controller_Menu.sh
+
 
  #the function that will check the internet connection is available
-connected_to_internet() {
+function connected_to_internet() {
   test_urls="\
   https://snapcraft.io/store \
   https://flathub.org/home \
@@ -52,21 +50,29 @@ connected_to_internet() {
 }
 
 
-
+function run_internet()
+{
   if connected_to_internet; then
         echo ''
         splash "Internet Connection is Good"
         # this will check for different stores adn compoents
+        . check_Compoents.sh
         call-method
         #this will redirect to the main GUI
-        #choose_Distro
+        #This will give you the choice to install GUI applications or terminal Applications
+        echo "Code is working"
+        . controller_Menu.sh
         controller_Menu
+        # . controller_Menu.sh
+        # controller_Menu
         echo ''
   else
       whiptail --title "Error" --msgbox "Check Your Internet Connection" 8 45;
       splash "Sorry Connection is not Good"
       exit 0
   fi
+}
+  
 
 
 

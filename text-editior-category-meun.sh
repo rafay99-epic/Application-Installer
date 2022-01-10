@@ -5,11 +5,12 @@
 # * Email: 99marafay@gmail.com
 # */
 
-. GUI_Application.sh
-. GUI_Meun.sh
+
 
 function text-editior-category()
 {
+    . GUI_Application.sh
+    . GUI_Meun.sh
     decide='Yes';
     while :; do
         

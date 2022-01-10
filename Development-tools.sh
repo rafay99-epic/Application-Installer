@@ -5,12 +5,14 @@
 # * Email: 99marafay@gmail.com
 # */
 
-#In this section all of the files will imported from the source directory
-. GUI_Application.sh
-. GUI_Meun.sh
+
 
 function Development-tools()
 {
+    #In this section all of the files will imported from the source directory
+    . GUI_Application.sh
+    . GUI_Meun.sh
+
     decide='Yes';
     while :; do
         

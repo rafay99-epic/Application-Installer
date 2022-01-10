@@ -5,12 +5,14 @@
 # * Email: 99marafay@gmail.com
 # */
 
-. GUI_Application.sh
-. GUI_Meun.sh
 
 function music-category-Menu()
-{
-     decide='Yes';
+{    
+    #In this part of all the important compoent will be included by callingother files
+    . GUI_Application.sh
+    . GUI_Meun.sh
+
+    decide='Yes';
     while :; do
         
         ADVSEL=$(whiptail --title " GUI Application Installer " --fb --menu "Choose from the following Application:" --cancel-button "${decide} Back" 25 60 15 \

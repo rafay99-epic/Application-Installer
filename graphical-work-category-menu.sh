@@ -5,12 +5,13 @@
 # * Email: 99marafay@gmail.com
 # */
 
-#this section will be importing files from the source
-. GUI_Application.sh
-. GUI_Meun.sh
 
 function graphical-work()
 {
+    #this section will be importing files from the source
+    . GUI_Application.sh
+    . GUI_Meun.sh
+
     decide='Yes';
     while :; do
         

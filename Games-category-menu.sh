@@ -5,12 +5,14 @@
 # * Email: 99marafay@gmail.com
 # */
 
-#this section will be importing files from the source
-. GUI_Application.sh
-. GUI_Meun.sh
+
 
 function games() 
 {
+    #this section will be importing files from the source
+    . GUI_Application.sh
+    . GUI_Meun.sh
+
      decide='Yes';
     while :; do
         

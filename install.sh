@@ -5,7 +5,7 @@
 # * Email: 99marafay@gmail.com
 # */
 
- . startup.sh
+ 
 
 function give-one-permission()
 {
@@ -24,6 +24,9 @@ function check_root()
         exit 1
     fi
 }
+
+
+
 function remove-start-permission()
 {
     chmod -x startup.sh
@@ -33,6 +36,7 @@ function run()
 {
     check_root
     give-one-permission
+    . startup.sh
     startup
 
 }

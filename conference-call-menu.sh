@@ -22,13 +22,14 @@
 #     fi
 # done
 
-#this will import the file check which package manager you are running
-. check-manager.sh
-. GUI_Application.sh
-. GUI_Meun.sh
 
 function conferences()
 {
+    #this will import the file check which package manager you are running
+    . check-manager.sh
+    . GUI_Application.sh
+    . GUI_Meun.sh
+    
     if [[ "$package_manager" == "pacman" ]];
     then
          decide='Yes';

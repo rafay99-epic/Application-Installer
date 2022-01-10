@@ -4,22 +4,23 @@
 # * Email: 99marafay@gmail.com
 # */
 
-. Browser.sh
-. text-editior-category-meun.sh
-. MultiMedia-category.sh
-. Development-tools.sh
-. office-category-menu.sh
-. conference-call-menu.sh
-. graphical-work-category-menu.sh
-. music-category-menu.sh
-. cloud-service-category-menu.sh
-. essential-category-menu.sh
-. Games-category-menu.sh
-. GUI_Application.sh
-. controller_Menu.sh
+
 
 function GUI_Menu()
 {
+    . Browser.sh
+    . text-editior-category-meun.sh
+    . MultiMedia-category.sh
+    . Development-tools.sh
+    . office-category-menu.sh
+    . conference-call-menu.sh
+    . graphical-work-category-menu.sh
+    . music-category-menu.sh
+    . cloud-service-category-menu.sh
+    . essential-category-menu.sh
+    . Games-category-menu.sh
+    . GUI_Application.sh
+    . controller_Menu.sh
     decide='Yes';
     while :; do
         
@@ -40,7 +41,7 @@ function GUI_Menu()
             1)
                 if (whiptail --title "Browser Category" --yesno "Are you sure you want to Enter?" 10 60) 
                 then
-                   category_Menu
+                    category_Menu
                     GUI_Menu
                 else
                     whiptail --title "Alert!!!" --msgbox "Sorry!! The Category can not be opened!!" 8 45;

@@ -6,10 +6,10 @@
 # */
 
 
-
 #this will import the file check which package manager you are running
-. check-manager.sh
 . controller_Menu.sh
+. check-manager.sh
+
 
 # this file will check the distro and then will launch the GUI and CLI Application Installer
 # This function will call the controller_Menu

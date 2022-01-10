@@ -90,26 +90,6 @@ function startup_message()
     echo ''
 }
 
-function reboot_section()
-{
-    echo "A Reboot is Required"
-    echo "Enter yes for a rebbot and no to Exit the applications"
-    read -p 'Enter Your Choice: ' user_choice
-
-    if [[ "$user_choice" == "yes" || "$user_choice" == "Yes" || "$user_choice" == "YES" || "$user_choice" == "yEs" || "$user_choice" == "yeS"  ]];
-    then 
-        remove_Permisiion
-        echo "Enter your user Password for reboot"
-        reboot
-    elif [[ "$user_choice" == "no" || "$user_choice" == "No" || "$user_choice" == "nO" || "$user_choice" == "NO" ]];
-    then
-        remove_Permisiion
-        exit
-    else
-        remove_Permisiion
-        exit
-    fi
-}
 
 #this is the starting point of the application
 function startup()
@@ -121,11 +101,10 @@ function startup()
 
     #this will call a function and will provide all of the required permission
     give_permission
-
     
     # calling the check internet Script
     splash 'Checking for the Internet Connection'
     echo ''
     . check_Internet.sh
-   
+    run_internet
 }

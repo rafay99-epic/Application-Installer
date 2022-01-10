@@ -13,7 +13,6 @@
 #this will import the file check which package manager you are running
 . check-manager.sh
 
-
 #File location for the snap store
 SNAP=/var/lib/snapd/snaps
 

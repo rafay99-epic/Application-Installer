@@ -4,7 +4,6 @@
 # * Email: 99marafay@gmail.com
 # */
 
-# this is very all of the package manager are placed
 declare -A osInfo;
 osInfo[/etc/debian_version]="apt-get"
 osInfo[/etc/alpine-release]="apk"

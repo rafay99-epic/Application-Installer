@@ -21,15 +21,17 @@
 #     fi
 # done
 
-#this will load all of the function so that we can acces those function in the Menu or in aother function
-. Terminal_application.sh
 
-#this will import the file check which package manager you are running
-
-. check-manager.sh
 #this will call the arch_System.sh file and all of the function will called in this script
 function terminal_application_menu_arch()
 {
+    #this will load all of the function so that we can acces those function in the Menu or in aother function
+    . Terminal_application.sh
+
+    #this will import the file check which package manager you are running
+
+    . check-manager.sh
+
     if [[ "$package_manager" == "pacman" ]];
     then
            decide='Yes';

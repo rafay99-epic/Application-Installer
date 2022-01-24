@@ -8,8 +8,6 @@
 . splash.sh
 . check-manager.sh
 
-
-
 # Update Category
 
 # system Update:
@@ -82,7 +80,7 @@ function chromum()
         whiptail --title "Chromium" --msgbox "Chromium is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo snap install chromium
+        sudo apt install chromium -y
         splash 'Chromium Browser is Installed'
         whiptail --title "Chromium" --msgbox "Chromium is Installed on this system." 8 45;
     else
@@ -99,8 +97,9 @@ function firefox()
         splash 'Firefox Browser is Installed'
         whiptail --title "Firefox" --msgbox "Firefox is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
-    then 
-        sudo snap install firefox
+    then
+        sudo apt-get install firefox-esr -y
+        #sudo snap install firefox
         splash 'Firefox Browser is Installed'
         whiptail --title "Firefox" --msgbox "Firefox is Installed on this system." 8 45;
     else
@@ -117,8 +116,9 @@ function brave()
         splash 'Brave Browser is Installed'
         whiptail --title "Brave" --msgbox "Brave is Installed on this system." 8 45;      
     elif [[ "$package_manager" == "apt-get" ]];
-    then 
-        sudo snap install brave
+    then
+        sudo apt install brave-browser -y
+        # sudo snap install brave
         splash 'Brave Browser is Installed'
         whiptail --title "Brave" --msgbox "Brave is Installed on this system." 8 45;
     else
@@ -136,7 +136,7 @@ function google-chrome()
     elif [[ "$package_manager" == "apt-get" ]];
     then 
         wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        sudo apt install ./google-chrome-stable_current_amd64.deb
+        sudo apt install ./google-chrome-stable_current_amd64.deb -y
         splash 'Google Chrome Browser is Installed'
         whiptail --title "Google Chrome" --msgbox "Google Chrome is Installed on this system." 8 45;
     else
@@ -184,8 +184,9 @@ function sublime()
         splash 'Sublime Text Editior is Installed'
         whiptail --title "Sublime" --msgbox "Sublime is Installed on this system." 8 45;                  
     elif [[ "$package_manager" == "apt-get" ]];
-    then 
-        sudo snap install sublime-text --classic
+    then
+        sudo apt install sublime-text -y 
+        #sudo snap install sublime-text --classic
         splash 'Sublime Text Editior is Installed'
         whiptail --title "Sublime" --msgbox "Sublime is Installed on this system." 8 45;
     else
@@ -205,7 +206,8 @@ function brackets()
         whiptail --title "Brackets" --msgbox "Brackets is Installed on this system." 8 45;                  
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo snap install brackets --classic
+        sudo flatpak install flathub io.brackets.Brackets -y
+        #sudo snap install brackets --classic
         splash 'Brackets Text Editior is Installed'
         whiptail --title "Brackets" --msgbox "Brackets is Installed on this system." 8 45;
     else
@@ -224,7 +226,8 @@ function vs_code()
         whiptail --title "Visual Studio Code" --msgbox "Visual Studio Code is Installed." 8 45;        
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo snap install code --classic
+        sudo apt install code -y
+        #sudo snap install code --classic
         splash 'Visual Stidio Code is Installed'
         whiptail --title "Visual Studio Code" --msgbox "Visual Studio Code is Installed." 8 45;
     else
@@ -275,8 +278,9 @@ function vlc()
         whiptail --title "VLC Video Player" --msgbox "VLC Video Player is Installed on this system." 8 45;
 
     elif [[ "$package_manager" == "apt-get" ]];
-    then 
-        sudo snap install vlc
+    then
+        sudo apt install vlc -y 
+        #sudo snap install vlc
         splash 'VLC Video Players is Installed'
         whiptail --title "VLC Video Player" --msgbox "VLC Video Player is Installed on this system." 8 45;
     else
@@ -294,8 +298,9 @@ function pluseAudio()
         splash 'Pluse Audio is Installed'
         whiptail --title "Pluse Audio" --msgbox "Pluse Audio is Installed on this system." 8 45;     
     elif [[ "$package_manager" == "apt-get" ]];
-    then 
-        sudo snap install pulseaudio
+    then
+        sudo apt install pulseaudio -y
+        #sudo snap install pulseaudio
         splash 'Pluse Audio is Installed'
         whiptail --title "Pluse Audio" --msgbox "Pluse Audio is Installed on this system." 8 45;
     else
@@ -431,7 +436,10 @@ function github_desktop()
         whiptail --title "GitHub Desktop" --msgbox "GitHub Desktop is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
     then
-        sudo flatpak install flathub io.github.shiftey.Desktop
+        wget https://github.com/shiftkey/desktop/releases/download/release-2.9.3-linux3/GitHubDesktop-linux-2.9.3-linux3.deb
+        sudo apt install gdebi-core -y
+        sudo gdebi GitHubDesktop-linux-2.9.3-linux3.deb
+        # sudo flatpak install flathub io.github.shiftey.Desktop
         splash 'GitHub Desktop is Installed'
         whiptail --title "GitHub Desktop" --msgbox "GitHub Desktop is Installed on this system." 8 45;
     else
@@ -497,8 +505,6 @@ function powershell()
         wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb
         # Register the Microsoft repository GPG keys
         sudo dpkg -i packages-microsoft-prod.deb
-        # Enable the "universe" repositories
-        sudo add-apt-repository universe
         # Install PowerShell
         sudo apt-get install -y powershell 
     else
@@ -518,7 +524,7 @@ function python()
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then
-        sudo apt install -y python3-pip
+        sudo apt install python3-pip -y
         splash 'Python 3 is Installed'
         whiptail --title "Python" --msgbox "Python is Installed on this system." 8 45;
        #echo 'system is debian'
@@ -563,7 +569,9 @@ function only_office()
         whiptail --title "Only Office Suite" --msgbox "Only Office Suite is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo snap install onlyoffice-desktopeditors
+        wget https://download.onlyoffice.com/install/desktop/editors/linux/onlyoffice-desktopeditors_amd64.deb
+        sudo dpkg -i onlyoffice-desktopeditors_amd64.deb -y
+        #sudo snap install onlyoffice-desktopeditors
         splash 'Only Office Suite is Installed'
         whiptail --title "Only Office Suite" --msgbox "Only Office Suite is Installed on this system." 8 45;
     else
@@ -582,7 +590,7 @@ function libreoffice()
         whiptail --title "Libre Office" --msgbox "Libre Office is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo snap install libreoffice
+        sudo apt install libreoffice -y
         splash 'Libre Office is Installed'
         whiptail --title "Libre Office" --msgbox "Libre Office is Installed on this system." 8 45;
     else
@@ -601,7 +609,9 @@ function WPS()
         whiptail --title "WPS Office" --msgbox "WPS Office is Installed on this system." 8 45;             
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo snap install wps-2019-snap
+        wget https://wdl1.pcfg.cache.wpscdn.com/wpsdl/wpsoffice/download/linux/10702/wps-office_11.1.0.10702.XA_amd64.deb
+        sudo dpkg -i wps-office_11.1.0.10702.XA_amd64.deb -y
+        #sudo snap install wps-2019-snap
         splash 'WPS Office is Installed'
         whiptail --title "WPS Office" --msgbox "WPS Office is Installed on this system." 8 45;
     else
@@ -672,8 +682,10 @@ function ms_teams()
         splash 'Microsoft Teams is Installed'
         whiptail --title "Microsoft Teams" --msgbox "Microsoft Teams is Installed." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
-    then 
-        sudo snap install teams
+    then
+        wget https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_1.3.00.5153_amd64.deb
+        sudo dpkg -i teams_1.3.00.5153_amd64.deb
+        #sudo snap install teams
         splash 'Microsft Teams is Installed'
         whiptail --title "Microsoft Teams" --msgbox "Microsoft Teams is Installed." 8 45;
     else
@@ -692,8 +704,10 @@ function zoom()
         splash 'Zoom is Installed'
         whiptail --title "Zoom" --msgbox "Zoom is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
-    then 
-        sudo snap install zoom-client
+    then
+        wget https://zoom.us/client/latest/zoom_amd64.deb
+        sudo apt install ./zoom_amd64.deb -y 
+        #sudo snap install zoom-client
         splash 'Zoom is Installed'
         whiptail --title "Zoom" --msgbox "Zoom is Installed on this system." 8 45;
     else
@@ -711,8 +725,9 @@ function signal-desktop()
         splash 'Signal Desktop is Installed'
         whiptail --title "Signal Desktop" --msgbox "Signal Desktop is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
-    then 
-        sudo snap install signal-desktop
+    then
+        sudo apt install signal-desktop -y
+        #sudo snap install signal-desktop
         splash 'Signal Desktop is Installed'
         whiptail --title "Signal Desktop" --msgbox "Signal Desktop is Installed on this system." 8 45;
     else
@@ -732,7 +747,8 @@ function telegram-desktop()
         whiptail --title "Telegram Desktop" --msgbox "Telegram Desktop is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo snap install telegram-desktop
+        sudo apt install telegram-desktop -y
+        #sudo snap install telegram-desktop
         splash 'Telegram Desktop is Installed'
         whiptail --title "Telegram Desktop" --msgbox "Telegram Desktop is Installed on this system." 8 45;
     else
@@ -763,7 +779,8 @@ function obs()
         whiptail --title "OBS" --msgbox "OBS is Installed on this system." 8 45;             
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo snap install obs-studio
+        sudo apt install obs-studio -y
+        # sudo snap install obs-studio
         splash 'OBS is Installed'
         whiptail --title "OBS" --msgbox "OBS is Installed on this system." 8 45;
     else
@@ -801,8 +818,9 @@ function gimp()
         splash 'GIMP is Installed'
         whiptail --title "GIMP" --msgbox "GIMP is Installed on this system." 8 45;             
     elif [[ "$package_manager" == "apt-get" ]];
-    then 
-        sudo snap install gimp
+    then
+        sudo apt install gimp -y  
+        # sudo snap install gimp
         splash 'GIMP is Installed'
         whiptail --title "GIMP" --msgbox "GIMP is Installed on this system." 8 45;
     else
@@ -821,7 +839,8 @@ function blender()
         whiptail --title "Blender" --msgbox "Blender is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo snap install blender --classic
+        sudo apt install blender -y
+        # sudo snap install blender --classic
         splash 'Blender is Installed'
         whiptail --title "Blender" --msgbox "Blender is Installed on this system." 8 45;
     else
@@ -851,7 +870,7 @@ function spotify()
         whiptail --title "Spotify" --msgbox "Spotify is Installed on this system." 8 45;                
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo snap install spotify
+        sudo flatpak install flathub com.spotify.Client
         splash 'Spotify is Installed'
         whiptail --title "Spotify" --msgbox "Spotify is Installed on this system." 8 45;
     else
@@ -870,7 +889,8 @@ function audacity()
         whiptail --title "Audacity" --msgbox "Audacity is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo snap install audacity
+        sudo apt install audacity -y
+        # sudo snap install audacity
         splash 'Audacity is Installed'
         whiptail --title "Audacity" --msgbox "Audacity is Installed on this system." 8 45;
     else
@@ -929,7 +949,8 @@ function next-cloud()
         whiptail --title "Next Cloud" --msgbox "Next Cloud is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo snap install nextcloud
+        sudo apt install nextcloud-desktop
+        # sudo snap install nextcloud
         splash 'Next Cloud is Installed'
         whiptail --title "Next Cloud" --msgbox "Next Cloud is Installed on this system." 8 45;
     else
@@ -976,7 +997,8 @@ function bitwarden()
         whiptail --title "Bitwarden" --msgbox "Bitwarden is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo snap install bitwarden
+        sudo flatpak install flathub com.bitwarden.desktop -y
+        # sudo snap install bitwarden
         splash 'Bitwarden is Installed'
         whiptail --title "Bitwarden" --msgbox "Bitwarden is Installed on this system." 8 45;
     else
@@ -994,8 +1016,9 @@ function mailspring()
         splash 'MailSpring is Installed'
         whiptail --title "MailSpring" --msgbox "MailSpring is Installed on this system." 8 45;        
     elif [[ "$package_manager" == "apt-get" ]];
-    then 
-        sudo snap install mailspring
+    then
+        sudo flatpak install flathub com.getmailspring.Mailspring -y
+        # sudo snap install mailspring
         splash 'MailSpring is Installed'
         whiptail --title "MailSpring" --msgbox "MailSpring is Installed on this system." 8 45;
     else
@@ -1013,7 +1036,8 @@ function slack()
         whiptail --title "Slack" --msgbox "Slack is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo snap install slack --classic
+        sudo flatpak install flathub com.slack.Slack -y
+        # sudo snap install slack --classic
         splash 'Slack is Installed'
         whiptail --title "Slack" --msgbox "Slack is Installed on this system." 8 45;
     else
@@ -1031,7 +1055,7 @@ function stacer()
         whiptail --title "Slack" --msgbox "Slack is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
     then
-        sudo apt install stacer
+        sudo apt install stacer -y
         splash 'Stacer is Installed'
         whiptail --title "Stacer" --msgbox "Stacer is Installed on this system." 8 45;
     else
@@ -1057,7 +1081,7 @@ function steam()
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo flatpak install flathub com.valvesoftware.Steam
+        sudo flatpak install flathub com.valvesoftware.Steam -y
         splash 'Steam is Installed'
         whiptail --title "Steam" --msgbox "Steam is Installed on this system." 8 45;
        #echo 'system is debian'
@@ -1080,12 +1104,8 @@ function wine()
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo dpkg --add-architecture i386
-        sudo apt update
-        wget -qO- https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add -
-        sudo apt install software-properties-common
-        sudo apt-add-repository "deb http://dl.winehq.org/wine-builds/ubuntu/ $(lsb_release -cs) main"
         sudo apt install --install-recommends winehq-stable
+        sudo apt install winetricks
         splash 'Wine is Installed'
         whiptail --title "Wine" --msgbox "Wine is Installed on this system." 8 45;
        #echo 'system is debian'

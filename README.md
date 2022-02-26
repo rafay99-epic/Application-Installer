@@ -123,7 +123,7 @@ Now Enter the following command
 ### **Running the Application:**
 
 ```
-sudo ./startup.sh
+sudo ./install.sh
 
 ```
 

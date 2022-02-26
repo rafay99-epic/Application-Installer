@@ -112,7 +112,7 @@ function brave()
 {
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S brave-browser
+        yay -S brave-bin --noconfirm --needed
         splash 'Brave Browser is Installed'
         whiptail --title "Brave" --msgbox "Brave is Installed on this system." 8 45;      
     elif [[ "$package_manager" == "apt-get" ]];
@@ -130,7 +130,7 @@ function google-chrome()
 {
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pamac install google-chrome
+        yay -S google-chrome --noconfirm --needed
         splash 'Google Chrome Browser is Installed'
         whiptail --title "Google Chrome" --msgbox "Google Chrome is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -180,7 +180,8 @@ function sublime()
     #New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo flatpak install flathub com.sublimetext.three
+        yay -S sublime-text --noconfirm --needed
+        # sudo flatpak install flathub com.sublimetext.three
         splash 'Sublime Text Editior is Installed'
         whiptail --title "Sublime" --msgbox "Sublime is Installed on this system." 8 45;                  
     elif [[ "$package_manager" == "apt-get" ]];
@@ -201,7 +202,8 @@ function brackets()
 
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pamac install brackets-bin 
+        yay -S brackets-bin --noconfirm --needed
+        #sudo pamac install brackets-bin 
         splash 'Brackets Text Editior is Installed'
         whiptail --title "Brackets" --msgbox "Brackets is Installed on this system." 8 45;                  
     elif [[ "$package_manager" == "apt-get" ]];
@@ -221,7 +223,8 @@ function vs_code()
     # New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S code
+        yay -S visual-studio-code-bin --noconfirm --needed
+        # sudo pacman -S code
         splash 'Visual Studio Code is Installed'
         whiptail --title "Visual Studio Code" --msgbox "Visual Studio Code is Installed." 8 45;        
     elif [[ "$package_manager" == "apt-get" ]];
@@ -241,7 +244,8 @@ function notion()
    #New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pamac install notion-app
+        yay -S notion-app-enhanced --noconfirm --needed
+        #sudo pamac install notion-app
         splash 'Notion is Installed'
         whiptail --title "Notion" --msgbox "Notion is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -273,7 +277,7 @@ function vlc()
     # New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S vlc
+        sudo pacman -S vlc --noconfirm --needed
         splash 'VLC Video Players is Installed'
         whiptail --title "VLC Video Player" --msgbox "VLC Video Player is Installed on this system." 8 45;
 
@@ -294,7 +298,7 @@ function pluseAudio()
     #New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S pulseaudio
+        sudo pacman -S pulseaudio --noconfirm --needed
         splash 'Pluse Audio is Installed'
         whiptail --title "Pluse Audio" --msgbox "Pluse Audio is Installed on this system." 8 45;     
     elif [[ "$package_manager" == "apt-get" ]];
@@ -315,7 +319,8 @@ function rythmobox()
     #New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo flatpak install flathub org.gnome.Rhythmbox3
+        yay -S rhythmbox-git --noconfirm --needed
+        #sudo flatpak install flathub org.gnome.Rhythmbox3
         splash 'Rythmobox Audio is Installed'
         whiptail --title "Rythmobox Audio" --msgbox "Rythmobox Audio is Installed on this system." 8 45;
      
@@ -344,7 +349,8 @@ function android_studio()
     #New code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo flatpak install flathub com.google.AndroidStudio
+        yay -S android-studio --noconfirm --needed
+        #sudo flatpak install flathub com.google.AndroidStudio
         splash 'Android Studio is Installed'
         whiptail --title "Android Studio" --msgbox "Android Studio is Installed on this system." 8 45;
                  
@@ -365,8 +371,8 @@ function java_JDK()
     #Code is the same and will be include in the new version
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S jre8-openjdk-headless jre8-openjdk jdk8-openjdk openjdk8-doc openjdk8-src
-        whiptail --title "Java JDK" --msgbox "Java JDK is Installed." 8 45;
+        sudo pacman -S jre8-openjdk-headless jre8-openjdk jdk8-openjdk  openjdk8-src
+        whiptail --title "Java 8 JDK" --msgbox "Java JDK is Installed." 8 45;
         splash 'Java JDK is Installed'
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
@@ -390,7 +396,7 @@ function netbean()
     # New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S netbeans
+        sudo pacman -S netbeans --noconfirm --needed
         splash 'Neabean is Installed'
         whiptail --title "Netbeans" --msgbox "Netbeans is Installed on this system." 8 45;   
     elif [[ "$package_manager" == "apt-get" ]];
@@ -410,7 +416,7 @@ function eclipse()
     # New code
     if [[ "$package_manager" == "pacman" ]];
     then
-        yay -S eclipse-java  
+        yay -S eclipse-java  --noconfirm --needed
         splash 'Eclipse is Installed'
         whiptail --title "Eclipse" --msgbox "Eclipse is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -431,7 +437,8 @@ function github_desktop()
 
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo flatpak install flathub io.github.shiftey.Desktop
+        yay -S github-desktop-bin --noconfirm --needed
+        #sudo flatpak install flathub io.github.shiftey.Desktop
         splash 'GitHub Desktop is Installed'
         whiptail --title "GitHub Desktop" --msgbox "GitHub Desktop is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -453,7 +460,7 @@ function pycharm()
     # New code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S pycharm-community-edition    
+        sudo pacman -S pycharm-community-edition --noconfirm --needed    
         splash 'Pycharm is Installed'
         whiptail --title "Pycharm" --msgbox "Pycharm is Installed on this system." 8 45;     
     elif [[ "$package_manager" == "apt-get" ]];
@@ -472,7 +479,8 @@ function flutter()
     # New code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pamac install flutter
+        yay -S flutter --noconfirm --needed
+        #sudo pamac install flutter
         splash 'Flutter is Installed'
         whiptail --title "Flutter" --msgbox "Pycharm is Installed on this system." 8 45;
                  
@@ -492,7 +500,8 @@ function powershell()
     #New Code 
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pamac install powershell-bin 
+        paru -S powershell-bin --noconfirm --needed
+        #sudo pamac install powershell-bin 
         splash 'Power Shell is Installed'
         whiptail --title "Power Shell" --msgbox "Power Shell is Installed on this system." 8 45;     
     elif [[ "$package_manager" == "apt-get" ]];
@@ -518,7 +527,7 @@ function python()
     #this will be the same and will be included in the new Version 
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S python
+        sudo pacman -S python --noconfirm --needed
         splash 'Python 3 is Installed'
         whiptail --title "Python" --msgbox "Python is Installed on this system." 8 45;
        # echo 'program is working'
@@ -564,7 +573,8 @@ function only_office()
     #New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S onlyoffice
+        yay -S onlyoffice-bin --noconfirm --needed
+        #sudo pacman -S onlyoffice
         splash 'Only Office Suite is Installed'
         whiptail --title "Only Office Suite" --msgbox "Only Office Suite is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -585,7 +595,7 @@ function libreoffice()
     # New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S libreoffice-fresh
+        sudo pacman -S libreoffice-fresh --noconfirm --needed
         splash 'Libre Office is Installed'
         whiptail --title "Libre Office" --msgbox "Libre Office is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -604,7 +614,8 @@ function WPS()
     # New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pamac install wps-office
+        paru -S wps-office --noconfirm --needed
+        #sudo pamac install wps-office
         splash 'WPS Office is Installed'
         whiptail --title "WPS Office" --msgbox "WPS Office is Installed on this system." 8 45;             
     elif [[ "$package_manager" == "apt-get" ]];
@@ -640,7 +651,8 @@ function whatsApp()
     if [[ "$package_manager" == "pacman" ]];
     then
         #The command of Arch is decided
-        sudo pamac install whatsapp-for-linux
+        paru -S whatsapp-for-linux --noconfirm --needed
+        #sudo pamac install whatsapp-for-linux
         splash 'WhatsApp is Installed'
         whiptail --title "WhatsApp" --msgbox "WhatsApp is Installed." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -659,7 +671,7 @@ function discord()
     #New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S discord
+        sudo pacman -S discord --noconfirm --needed
         splash 'Discord is Installed'
         whiptail --title "Discord" --msgbox "Discord is Installed." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -678,7 +690,8 @@ function ms_teams()
     #New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pamac install teams
+        yay -S teams --noconfirm --needed
+        #sudo pamac install teams
         splash 'Microsoft Teams is Installed'
         whiptail --title "Microsoft Teams" --msgbox "Microsoft Teams is Installed." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -700,7 +713,7 @@ function zoom()
     
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pamac install zoom   
+        yay -S zoom --noconfirm --needed
         splash 'Zoom is Installed'
         whiptail --title "Zoom" --msgbox "Zoom is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -721,7 +734,7 @@ function signal-desktop()
     # NEw Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S signal-desktop
+        sudo pacman -S signal-desktop --noconfirm --needed
         splash 'Signal Desktop is Installed'
         whiptail --title "Signal Desktop" --msgbox "Signal Desktop is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -742,7 +755,7 @@ function telegram-desktop()
 
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S telegram-desktop  
+        sudo pacman -S telegram-desktop --noconfirm --needed  
         splash 'Telegram Desktop is Installed'
         whiptail --title "Telegram Desktop" --msgbox "Telegram Desktop is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -774,7 +787,7 @@ function obs()
   
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S obs-studio
+        sudo pacman -S obs-studio --noconfirm --needed
         splash 'OBS is Installed'
         whiptail --title "OBS" --msgbox "OBS is Installed on this system." 8 45;             
     elif [[ "$package_manager" == "apt-get" ]];
@@ -794,7 +807,7 @@ function kdenlive()
     # New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S kdenlive
+        sudo pacman -S kdenlive --noconfirm --needed
         splash 'Kdenlive is Installed'
         whiptail --title "Kdenlive" --msgbox "Kdenlive is Installed on this system." 8 45;             
     elif [[ "$package_manager" == "apt-get" ]];
@@ -814,7 +827,7 @@ function gimp()
     # New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S gimp    
+        sudo pacman -S gimp  --noconfirm --needed
         splash 'GIMP is Installed'
         whiptail --title "GIMP" --msgbox "GIMP is Installed on this system." 8 45;             
     elif [[ "$package_manager" == "apt-get" ]];
@@ -834,7 +847,7 @@ function blender()
     # NEw Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S blender
+        sudo pacman -S blender --noconfirm --needed
         splash 'Blender is Installed'
         whiptail --title "Blender" --msgbox "Blender is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -865,7 +878,8 @@ function spotify()
     # New code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo flatpak install flathub com.spotify.Client
+        yay -S spotify --noconfirm --needed 
+        #sudo flatpak install flathub com.spotify.Client
         splash 'Spotify is Installed'
         whiptail --title "Spotify" --msgbox "Spotify is Installed on this system." 8 45;                
     elif [[ "$package_manager" == "apt-get" ]];
@@ -884,7 +898,7 @@ function audacity()
     # New code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S audacity
+        sudo pacman -S audacity --noconfirm --needed
         splash 'Audacity is Installed'
         whiptail --title "Audacity" --msgbox "Audacity is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -904,7 +918,8 @@ function plex-media-server()
     # New code 
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pamac install  plex-media-server 
+        yay -S plex-media-server --noconfirm --needed
+        #sudo pamac install  plex-media-server 
         splash 'Plex Media Server is Installed'
         whiptail --title "Plex Media Server" --msgbox "Plex Media Server is Installed on this system." 8 45;             
     elif [[ "$package_manager" == "apt-get" ]];
@@ -924,7 +939,7 @@ function  All-cloud-services()
     if [[ "$package_manager" == "pacman" ]];
     then
         next-cloud
-        #google--sdk-cloud
+        google--sdk-cloud
         whiptail --title "Message" --msgbox "All Applications are Installed" 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
     then 
@@ -944,7 +959,7 @@ function next-cloud()
     # New code 
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S nextcloud   
+        sudo pacman -S nextcloud --noconfirm --needed
         splash 'Next Cloud is Installed'
         whiptail --title "Next Cloud" --msgbox "Next Cloud is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -963,7 +978,8 @@ function google--sdk-cloud()
     # New code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pamac install  google-cloud-sdk  
+        yay -S google-cloud-sdk --noconfirm --needed
+        #sudo pamac install  google-cloud-sdk  
         splash 'Google SDK Cloud is Installed'
         whiptail --title "Google SDK Cloud" --msgbox "Google SDK Cloud is Installed on this system." 8 45;           
     elif [[ "$package_manager" == "apt-get" ]];
@@ -992,7 +1008,8 @@ function bitwarden()
     # New code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S bitwarden  
+        yay -S bitwarden --noconfirm --needed
+        #sudo pacman -S bitwarden  
         splash 'Bitwarden is Installed'
         whiptail --title "Bitwarden" --msgbox "Bitwarden is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -1012,7 +1029,8 @@ function mailspring()
     #New code 
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pamac install mailspring 
+        yay -S mailspring --noconfirm --needed
+        #sudo pamac install mailspring 
         splash 'MailSpring is Installed'
         whiptail --title "MailSpring" --msgbox "MailSpring is Installed on this system." 8 45;        
     elif [[ "$package_manager" == "apt-get" ]];
@@ -1031,7 +1049,8 @@ function slack()
     # New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo flatpak install flathub com.slack.Slack
+        yay -S slack-desktop --noconfirm --needed
+        #sudo flatpak install flathub com.slack.Slack
         splash 'Slack is Installed'
         whiptail --title "Slack" --msgbox "Slack is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -1050,7 +1069,8 @@ function stacer()
 {
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pamac install  stacer
+        yay -S stacer-bin --noconfirm --needed
+        #sudo pamac install  stacer
         splash 'Slack is Installed'
         whiptail --title "Slack" --msgbox "Slack is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -1075,7 +1095,7 @@ function steam()
 {
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S steam 
+        sudo pacman -S steam --noconfirm --needed
         splash 'Steam is Installed'
         whiptail --title "Steam" --msgbox "Steam is Installed on this system." 8 45; 
        # echo 'program is working'
@@ -1096,16 +1116,16 @@ function wine()
 {
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S wine
-        sudo pacman -S winetricks
-        sudo pacman -S wine-mono wine_gecko
+        sudo pacman -S wine --noconfirm --needed
+        sudo pacman -S winetricks --noconfirm --needed
+        sudo pacman -S wine-mono wine_gecko --noconfirm --needed
         splash 'Wine is Installed'
         whiptail --title "Wine" --msgbox "Wine is Installed on this system." 8 45;
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo apt install --install-recommends winehq-stable
-        sudo apt install winetricks
+        sudo apt install --install-recommends winehq-stable -y
+        sudo apt install winetricks -y
         splash 'Wine is Installed'
         whiptail --title "Wine" --msgbox "Wine is Installed on this system." 8 45;
        #echo 'system is debian'

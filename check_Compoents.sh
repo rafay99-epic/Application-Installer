@@ -17,7 +17,7 @@
 SNAP=/var/lib/snapd/snaps
 
 #The file location for the flatpak or FlatHub for arch
-FLATPAK_FILE=/etc/profile.d/flatpak-bindir.sh
+FLATPAK_FILE=/usr/bin/flatpak
 
 #the file location for debian.
 FLATPAK_FILE_DEBIAN=/usr/bin/flatpak
@@ -34,26 +34,21 @@ GIT=/usr/bin/git
 #Location for the curl
 CURL=/usr/bin/curl
 
+#Location for Paru
+PARU=/usr/bin/paru
 
 #check for the snap store
 function snap()
 {
-    if [[ "$package_manager" == "pacman" ]];
-    then
-        yay
-        pamac
-    elif [[ "$package_manager" == "apt-get" ]];
+    if [[ "$package_manager" == "apt-get" ]];
     then 
         if [ ! -e "$SNAP" ]; 
         then
-            sudo apt install snapd
-            sudo snap install snap-store 
+            sudo apt install snapd -y 
+            sudo snap install snap-store -y  
         else  
             splash "Snap Is already Installed"
         fi
-    else
-        echo 'Importamt compoent is not Installed!!!!'
-        exit 0
     fi
 }
 
@@ -64,7 +59,7 @@ function flathub()
     then
         if [ ! -e "$FLATPAK_FILE" ]; 
         then
-            sudo pacman -S flatpak
+            sudo pacman -S flatpak --noconfirm --needed 
         else  
             splash "FlatHub Is already Installed"
         fi
@@ -72,10 +67,10 @@ function flathub()
     then 
         if [ ! -e "$FLATPAK_FILE_DEBIAN" ]; 
         then
-            sudo apt install flatpak
-            sudp apt-get update
-            sudo apt-get upgrade
-            sudo apt install gnome-software-plugin-flatpak
+            sudo apt install flatpak -y
+            sudp apt-get update -y
+            sudo apt-get upgrade -y
+            sudo apt install gnome-software-plugin-flatpak -y 
             sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
         else  
             splash "FlatHub Is already Installed"
@@ -85,27 +80,41 @@ function flathub()
         exit 0
     fi
 }
+function paru_manager()
+{
+    if [[ "$package_manager" == "pacman" ]];
+    then 
+        if [ ! -e "$PARU" ]; 
+        then
+            sudo pacman -S paru --noconfirm --needed
+        else
+            splash "Paru Aur Helper is in the system"
+        fi
+    fi
+}
 
 #check for yay AUR Helper
-function yay()
-{ 
-    if [ ! -e "$YAY_LOCATION" ]; 
-    then
-        sudo pacman -S yay
-    else
-        splash "Yay Aur Helper is in the system"
-    fi
-
-}
-function pamac()
+function yay_manager()
 {
-    if [ ! -e "$PAMAC" ]; 
+    if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S pamac
-    else
-        splash "Yay Aur Helper is in the system"
+        if [ ! -e "$YAY_LOCATION" ]; 
+        then
+            paru -S yay --noconfirm --needed
+        else
+            splash "Yay Aur Helper is in the system"
+        fi
     fi
 }
+# function pamac()
+# {
+#     if [ ! -e "$PAMAC" ]; 
+#     then
+#         sudo pacman -S pamac
+#     else
+#         splash "Yay Aur Helper is in the system"
+#     fi
+# }
 # #check for git
 function git()
 {
@@ -113,7 +122,7 @@ function git()
     then
         if [ ! -f "$GIT" ]; 
         then
-            sudo pacman -S git
+            sudo pacman -S git --noconfirm --needed
         else
             echo ''
             splash "Git is in the system"
@@ -123,8 +132,9 @@ function git()
     then 
         if [ ! -f "$GIT" ]; 
         then
-            sudo apt-get update
-            sudo apt-get install git
+            sudo apt-get update -y 
+            sudo apt upgrade -y 
+            sudo apt-get install git -y
         else
             echo ''
             splash "Git is in the system"
@@ -143,7 +153,7 @@ function curl()
     then
         if [ ! -f "$CURL" ]; 
         then
-            sudo pacman -Sy curl 
+            sudo pacman -S curl --noconfirm --needed
         else
             echo ''
             splash "CURL is in the system"
@@ -153,8 +163,8 @@ function curl()
     then 
         if [ ! -f "$CURL" ]; 
         then
-            sudo apt-get update
-            sudo apt-get install curl
+            sudo apt-get update && sudo apt upgrade -y 
+            sudo apt-get install curl -y 
         else
             echo ''
             splash "CURL is in the system"
@@ -163,6 +173,13 @@ function curl()
     else
         echo 'System is Not Supported!!'
         exit 0
+    fi
+}
+function fakeroot()
+{
+    if [[ "$package_manager" == "pacman" ]];
+    then
+        sudo pacman -S --needed base-devel --noconfirm --needed
     fi
 }
 function repo()
@@ -205,12 +222,26 @@ function repo()
         sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
     fi
 }
+function arch_calling()
+{
+    #Arch Linux functions
+    paru_manager
+    fakeroot
+    yay_manager
 
-function call-method()
+}
+#debian Function calling
+function debian_calling()
 {
     repo
+    snap
+}
+#This is the main calling Method
+function call-method()
+{
     curl
     git
-    snap
+    arch_calling
+    debian_calling
     flathub
 }

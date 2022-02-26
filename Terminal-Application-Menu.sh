@@ -4,24 +4,6 @@
 # * Email: 99marafay@gmail.com
 # */
 
-# # this is very all of the package manager are placed
-# declare -A osInfo;
-# osInfo[/etc/debian_version]="apt-get"
-# osInfo[/etc/alpine-release]="apk"
-# osInfo[/etc/centos-release]="yum"
-# osInfo[/etc/fedora-release]="dnf"
-# osInfo[/etc/arch-release]="pacman"
-
-# #to find the which Os yo are running
-# for f in ${!osInfo[@]}
-# do
-#     if [[ -f $f ]];
-#     then
-#          package_manager=${osInfo[$f]}
-#     fi
-# done
-
-
 #this will call the arch_System.sh file and all of the function will called in this script
 function terminal_application_menu_arch()
 {
@@ -45,8 +27,12 @@ function terminal_application_menu_arch()
             "5" "Install neofetch" \
             "6" "Install CPU Frequence Changer" \
             "7" "Install curl" \
-            "8" "Learn About theses Terminal Based Application " \
-            "9" "Install All Application Listed above" 3>&1 1>&2 2>&3)
+            "8" "Cmake"  \
+            "9" "Ranger" \
+            "10" "Fish Shell" \
+            "11" "ZSH Shell" \
+            "12" "Learn About theses Terminal Based Application " \
+            "13" "Install All Application Listed above" 3>&1 1>&2 2>&3)
         case $ADVSEL in
             1)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install gdu?." 10 60) 
@@ -112,6 +98,42 @@ function terminal_application_menu_arch()
                 fi
                 ;;
             8)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install Cmake?." 10 60) 
+                then
+                    make
+                    terminal_application_menu_arch
+                else
+                    whiptail --title "Cmake" --msgbox "Cmake is not Installed" 8 45;
+                fi
+                ;;
+            9)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install Ranger?." 10 60) 
+                then
+                    app_ranger
+                    terminal_application_menu_arch
+                else
+                    whiptail --title "Ranger" --msgbox "Ranger is not Installed" 8 45;
+                fi
+                ;;
+            10)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install Fish Shell?." 10 60) 
+                then
+                    shell_fish
+                    terminal_application_menu_arch
+                else
+                    whiptail --title "Fish Shell" --msgbox "Fish Shell is not Installed" 8 45;
+                fi
+                ;;
+            11)
+                if (whiptail --title "Alert!!" --yesno "Do you want to Install ZSH Shell?." 10 60) 
+                then
+                    zsh_shell
+                    terminal_application_menu_arch
+                else
+                    whiptail --title "Zsh Shell" --msgbox "Zsh Shell is not Installed" 8 45;
+                fi
+                ;;    
+            12)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Learn about Terminal Base Application?." 10 60) 
                 then
                     learn_terminal_Application
@@ -119,7 +141,7 @@ function terminal_application_menu_arch()
                 fi
                 ;;
 
-            9)
+            13)
                 if (whiptail --title "Alert!!" --yesno "Do you want to Install All Application?." 10 60) 
                 then
                     All_terminal_Application
@@ -149,8 +171,11 @@ function terminal_application_menu_arch()
                 "6" "CPU Frequence Changer" \
                 "7" "curl" \
                 "8" "Make" \
-                "9" "Learn About theses Terminal Based Application " \
-                "10" "Install All Application Listed above" 3>&1 1>&2 2>&3)
+                "9" "Ranger" \
+                "10" "Fish Shell" \
+                "11" "ZSH Shell" \
+                "12" "Learn About theses Terminal Based Application " \
+                "13" "Install All Application Listed above" 3>&1 1>&2 2>&3)
             case $ADVSEL in
                 1)
                     if (whiptail --title "Alert!!" --yesno "Do you want to Install gdu?." 10 60) 
@@ -225,13 +250,40 @@ function terminal_application_menu_arch()
                     fi
                     ;;    
                 9)
+                    if (whiptail --title "Alert!!" --yesno "Do you want to Install Ranger?." 10 60) 
+                    then
+                        app_ranger
+                        terminal_application_menu_arch
+                    else
+                        whiptail --title "Ranger" --msgbox "Ranger is not Installed" 8 45;
+                    fi
+                    ;;
+                10)
+                    if (whiptail --title "Alert!!" --yesno "Do you want to Install Fish Shell?." 10 60) 
+                    then
+                        shell_fish
+                        terminal_application_menu_arch
+                    else
+                        whiptail --title "Fish Shell" --msgbox "Fish Shell is not Installed" 8 45;
+                    fi
+                    ;;
+                11)
+                    if (whiptail --title "Alert!!" --yesno "Do you want to Install ZSH Shell?." 10 60) 
+                    then
+                        zsh_shell
+                        terminal_application_menu_arch
+                    else
+                        whiptail --title "Zsh Shell" --msgbox "Zsh Shell is not Installed" 8 45;
+                    fi
+                    ;;    
+                12)
                     if (whiptail --title "Alert!!" --yesno "Do you want to Learn about Terminal Base Application?." 10 60) 
                     then
                         learn_terminal_Application
                         terminal_application_menu_arch
                     fi
                     ;;
-                10)
+                13)
                     if (whiptail --title "Alert!!" --yesno "Do you want to Install All Application?." 10 60) 
                     then
                         All_terminal_Application

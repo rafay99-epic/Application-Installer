@@ -65,6 +65,7 @@ function controller_Menu()
         else
             . startup.sh
             remove_Permisiion
+            chmod -x startup.sh
             exit 0
         fi
     

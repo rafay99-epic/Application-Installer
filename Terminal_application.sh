@@ -19,7 +19,7 @@ function install_gdu()
     # New Code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S gdu
+        sudo pacman -S gdu --noconfirm --needed
         splash 'gdu is Installed'
         echo ''
         whiptail --title "GDU Disk Analyizer" --msgbox "GDU Disk Analyizer is Installed." 8 45;
@@ -30,7 +30,6 @@ function install_gdu()
         sudo snap connect gdu-disk-usage-analyzer:system-backup :system-backup
         sudo snap alias gdu-disk-usage-analyzer.gdu gdu
         splash 'gdu is Installed'
-        echo ''
         whiptail --title "GDU Disk Analyizer" --msgbox "GDU Disk Analyizer is Installed." 8 45;
     else
         whiptail --title "Error" --msgbox "Applicatin can not be installed." 8 45;
@@ -43,7 +42,7 @@ function install_lsd()
     # NEw code
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S lsd
+        sudo pacman -S lsd --noconfirm --needed
         splash 'lsd is Installed'
         echo ''
         whiptail --title "lsd" --msgbox "lsd is Installed." 8 45;
@@ -61,14 +60,14 @@ function install_git()
 {      
     if [[ "$package_manager" == "pacman" ]];
     then
-       sudo pacman -S git
+       sudo pacman -S git --noconfirm --needed
         splash 'git is Installed'
         echo ''
        whiptail --title "Git Clone" --msgbox "Git Clone is Installed." 8 45;
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo apt install git
+        sudo apt install git -y 
         splash 'git is Installed'
         echo ''
         whiptail --title "Git Clone" --msgbox "Git Clone is Installed." 8 45;
@@ -83,13 +82,13 @@ function install_htop()
     #New Code 
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S htop 
+        sudo pacman -S htop --noconfirm --needed
         splash 'htop is Installed'
         echo ''
         whiptail --title "htop" --msgbox "htop is Installed." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo apt-get install htop
+        sudo apt-get install htop -y 
         splash 'htop is Installed'
         echo ''
         whiptail --title "htop" --msgbox "htop is Installed." 8 45;
@@ -101,14 +100,13 @@ function install_neofetch()
 {   
     if [[ "$package_manager" == "pacman" ]];
     then
-       sudo pacman -S neofetch
+       sudo pacman -S neofetch --noconfirm --needed
         splash 'neofetch is Installed'
         echo ''
        whiptail --title "Neofetch" --msgbox "Neofetch is Installed." 8 45;
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo apt-get update
         sudo apt-get install neofetch
         splash 'neofetch is Installed'
         echo ''
@@ -123,14 +121,19 @@ function install_PowersaveMode()
     # New code
     if [[ "$package_manager" == "pacman" ]];
     then
-        yay -S auto-cpufreq-git
+        yay -S auto-cpufreq-git 
         splash 'Frequency Changer is Installed'
         echo ''
         whiptail --title "CPU frequence Changer" --msgbox "CPU Frequence Changer is Installed." 8 45;         
     elif [[ "$package_manager" == "apt-get" ]];
     then
-        sudo snap install auto-cpufreq
-        splash 'Frequency Changer is Installed'
+        git clone https://github.com/AdnanHodzic/auto-cpufreq.git
+        cd auto-cpufreq 
+        sudo ./auto-cpufreq-installer
+        cd ../
+        rm -rf auto-cpufreq
+        # sudo snap install auto-cpufreq
+        splash 'CPU Frequency Checker is Installed'
         echo ''
         whiptail --title "CPU frequence Changer" --msgbox "CPU Frequence Changer is Installed." 8 45;
     else
@@ -141,14 +144,14 @@ function install_Curl()
 {     
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -Sy curl
+        sudo pacman -S curl --noconfirm --needed
         splash 'curl is Installed'
         echo ''
         whiptail --title "CURL" --msgbox "CURL is Installed." 8 45;
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo apt install curl
+        sudo apt install curl -y 
         splash 'curl is Installed'
         echo ''
         whiptail --title "CURL" --msgbox "CURL is Installed." 8 45;
@@ -160,15 +163,15 @@ function make()
 {
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S cmake 
-        sudo pacman -S make
+        sudo pacman -S cmake --noconfirm --needed
+        sudo pacman -S make --confirm --needed
         splash 'Make is Installed'
         echo ''
         whiptail --title "make" --msgbox "make is Installed." 8 45;
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo apt install make
+        sudo apt install make -y 
         splash 'Make is Installed'
         echo ''
         whiptail --title "make" --msgbox "make is Installed." 8 45;
@@ -176,8 +179,59 @@ function make()
         whiptail --title "application" --msgbox "Make is Installed." 8 45;
     fi
 }
+function app_ranger()
+{
+    if [[ "$package_manager" == "pacman" ]];
+    then
+        sudo pacman -S ranger --noconfirm --needed
+        splash 'Ranger is Installed'
+        whiptail --title "Ranger" --msgbox "Range is Installed." 8 45;
+    elif [[ "$package_manager" == "apt-get" ]];
+    then 
+        sudo apt install ranger -y 
+        splash 'Ranger is Installed'
+        whiptail --title "Ranger" --msgbox "Range is Installed." 8 45;
+    else
+        whiptail --title "application" --msgbox "Ranger is Installed." 8 45;
+    fi
+}
+function shell_fish()
+{
+    if [[ "$package_manager" == "pacman" ]];
+    then
+        sudo pacman -S fish --noconfirm --needed
+        splash 'Fiah Shell  is Installed'
+        whiptail --title "Fish Shell" --msgbox "Fish Shell is Installed." 8 45;
+    elif [[ "$package_manager" == "apt-get" ]];
+    then 
+        sudo apt install fish -y 
+        splash 'Fiah Shell  is Installed'
+        whiptail --title "Fish Shell" --msgbox "Fish Shell is Installed." 8 45;
+    else
+        whiptail --title "application" --msgbox "Fish is Installed." 8 45;
+    fi
+}
+function zsh_shell()
+{
+    if [[ "$package_manager" == "pacman" ]];
+    then
+        sudo pacman -S zsh --noconfirm --needed
+        splash 'Zsh Shell  is Installed'
+        whiptail --title "Zsh Shell" --msgbox "Zsh Shell is Installed." 8 45;
+    elif [[ "$package_manager" == "apt-get" ]];
+    then 
+        sudo apt install zsh -y 
+        splash 'Zsh Shell  is Installed'
+        whiptail --title "Zsh Shell" --msgbox "Zsh Shell is Installed." 8 45;
+    else
+        whiptail --title "application" --msgbox "Zsh is Installed." 8 45;
+    fi
+}
 function All_terminal_Application()
 {
+    app_ranger
+    shell_fish
+    zsh_shell
     install_gdu
     install_Curl
     install_PowersaveMode

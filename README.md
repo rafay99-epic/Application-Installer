@@ -46,6 +46,10 @@ There are alot of user who uses terminal based application, so for those user we
 5. neofetch
 6. CPU Frequency changer
 7. curl
+8. cmake
+9. ranger
+10. fish shell
+11. Zsh Shell
 
 These are the seven application which has been added in this application do far, more application will be added in the feture update.
 

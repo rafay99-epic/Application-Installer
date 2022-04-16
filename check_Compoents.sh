@@ -106,15 +106,7 @@ function yay_manager()
         fi
     fi
 }
-# function pamac()
-# {
-#     if [ ! -e "$PAMAC" ]; 
-#     then
-#         sudo pacman -S pamac
-#     else
-#         splash "Yay Aur Helper is in the system"
-#     fi
-# }
+
 # #check for git
 function git()
 {

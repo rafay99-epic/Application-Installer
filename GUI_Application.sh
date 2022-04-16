@@ -93,7 +93,7 @@ function firefox()
     #New Code 
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S firefox
+        sudo pacman -S firefox --noconfirm --needed
         splash 'Firefox Browser is Installed'
         whiptail --title "Firefox" --msgbox "Firefox is Installed on this system." 8 45;
     elif [[ "$package_manager" == "apt-get" ]];
@@ -326,7 +326,7 @@ function rythmobox()
      
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo flatpak install flathub org.gnome.Rhythmbox3
+        sudo flatpak install flathub org.gnome.Rhythmbox3 -y
         splash 'Rythmobox Audio is Installed'
         whiptail --title "Rythmobox" --msgbox "Rythmobox Audio is Installed on this system." 8 45;
     else
@@ -371,17 +371,15 @@ function java_JDK()
     #Code is the same and will be include in the new version
     if [[ "$package_manager" == "pacman" ]];
     then
-        sudo pacman -S jre8-openjdk-headless jre8-openjdk jdk8-openjdk  openjdk8-src
+        sudo pacman -S jre8-openjdk-headless jre8-openjdk jdk8-openjdk  openjdk8-src --noconfirm --needed
         whiptail --title "Java 8 JDK" --msgbox "Java JDK is Installed." 8 45;
         splash 'Java JDK is Installed'
        # echo 'program is working'
     elif [[ "$package_manager" == "apt-get" ]];
     then 
-        sudo apt install default-jre
-        sudo apt install openjdk-11-jre-headless
-        sudo apt install default-jre
-        sudo apt install default-jre
-        sudo apt install default-jdk
+        sudo apt install default-jre -y
+        sudo apt install openjdk-11-jre-headless -y
+        sudo apt install default-jdk -y
         whiptail --title "Java JDK" --msgbox "Java JDK is Installed." 8 45;
         splash 'Java JDK is Installed'
        #echo 'system is debian'
@@ -507,7 +505,7 @@ function powershell()
     elif [[ "$package_manager" == "apt-get" ]];
     then 
         # Update the list of packages
-        sudo apt-get update
+        sudo apt-get update -y
         # Install pre-requisite packages.
         sudo apt-get install -y wget apt-transport-https software-properties-common
         # Download the Microsoft repository GPG keys
@@ -632,9 +630,6 @@ function WPS()
 }
 
 # Conference Call Category
-
-
-#discord
 function All-conference()
 {
     discord

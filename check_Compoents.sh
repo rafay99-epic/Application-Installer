@@ -67,10 +67,8 @@ function flathub()
     then 
         if [ ! -e "$FLATPAK_FILE_DEBIAN" ]; 
         then
-            sudo apt install flatpak -y
-            sudp apt-get update -y
-            sudo apt-get upgrade -y
-            sudo apt install gnome-software-plugin-flatpak -y 
+            sudo apt-get install flatpak -y
+            sudo apt-get install gnome-software-plugin-flatpak -y 
             sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
         else  
             splash "FlatHub Is already Installed"
@@ -86,7 +84,9 @@ function paru_manager()
     then 
         if [ ! -e "$PARU" ]; 
         then
-            sudo pacman -S paru --noconfirm --needed
+            sudo pacman -S base-devel --noconfirm -needed
+            # Paru is not in the pacman
+            # sudo pacman -S paru --noconfirm --needed
         else
             splash "Paru Aur Helper is in the system"
         fi
@@ -227,6 +227,7 @@ function debian_calling()
 {
     repo
     snap
+    flathub
 }
 #This is the main calling Method
 function call-method()
@@ -235,5 +236,4 @@ function call-method()
     git
     arch_calling
     debian_calling
-    flathub
 }

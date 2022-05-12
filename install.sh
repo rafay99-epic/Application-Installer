@@ -12,6 +12,11 @@ YAY_LOCATION=/usr/bin/yay
 
 function install-paru-manager()
 {
+     echo -ne "
+-------------------------------------------------------------------------
+        Instlling Paru and Yay for Arch System
+-------------------------------------------------------------------------
+"
     . check-manager.sh
     
     if [[ "$package_manager" == "pacman" ]];
@@ -44,19 +49,8 @@ function give-one-permission()
     chmod +x check-manager.sh
 
 }
-#to check the root access
-#application will not run without root access
-# function check_root()
-# {
-#     #this will check for root
-#     ROOT_UID=0
-#     if [[ ! "${UID}" -eq "${ROOT_UID}" ]]; then
-#         # Error message 
-#         whiptail --msgbox --title "ALert!!" "Run me as root, Try sudo ./install.sh" 20 78;
-#         exit 1
-#     fi
-# }
 
+# To check the file is run as non root
 function non-root() 
 {
     if [ "$USER" = root ]; then

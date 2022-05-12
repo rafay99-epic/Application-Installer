@@ -62,11 +62,6 @@ function controller_Menu()
         if (textexit=="Yes") 
         then
             reboot
-        else
-            . startup.sh
-            remove_Permisiion
-            chmod -x startup.sh
-            exit 0
         fi
     
 }

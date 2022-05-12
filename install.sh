@@ -54,6 +54,7 @@ function non-root()
 function remove-start-permission()
 {
     chmod -x startup.sh
+    chmod -x check-manager.sh
 }
 
 function run()

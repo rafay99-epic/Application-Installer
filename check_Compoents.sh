@@ -219,7 +219,7 @@ function arch_calling()
     #Arch Linux functions
     paru_manager
     fakeroot
-    yay_manager
+    # yay_manager
 
 }
 #debian Function calling

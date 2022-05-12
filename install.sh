@@ -5,16 +5,36 @@
 # * Email: 99marafay@gmail.com
 # */
 
+#Location for Paru
+PARU=/usr/bin/paru
+#Location for the yay on the arch system
+YAY_LOCATION=/usr/bin/yay
+
 function install-paru-manager()
 {
     . check-manager.sh
     
     if [[ "$package_manager" == "pacman" ]];
     then
-        echo "Installing paru for Arch Linux"
-        git clone https://aur.archlinux.org/paru.git
-        cd paru
-        makepkg -si
+        if [ ! -e "$PARU" ]; 
+        then
+            # Installing Paru 
+            echo "Installing paru for Arch Linux"
+            git clone https://aur.archlinux.org/paru.git
+            cd paru
+            makepkg -si
+            cd ../
+        else
+            echo "Paru Aur Helper is in the system"
+        fi
+        
+        if [ ! -e "$YAY_LOCATION" ]; 
+        then
+            paru -S yay --noconfirm --needed
+        else
+            echo "Yay Aur Helper is in the system"
+        fi
+        
     fi
 }
 

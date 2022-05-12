@@ -108,3 +108,4 @@ function startup()
     . check_Internet.sh
     run_internet
 }
+startup

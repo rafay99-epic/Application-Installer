@@ -14,19 +14,13 @@ function reboot()
 
     if [[ "$user_choice" == "yes" || "$user_choice" == "Yes" || "$user_choice" == "YES" || "$user_choice" == "yEs" || "$user_choice" == "yeS"  ]];
     then
-        . startup.sh
-        remove_Permisiion
         echo "Enter your user Password for reboot"
         sudo reboot now
     elif [[ "$user_choice" == "no" || "$user_choice" == "No" || "$user_choice" == "nO" || "$user_choice" == "NO" ]];
-    then
-        . startup.sh
-        remove_Permisiion
-        exit
+    then     
+        exit 0
     else
-        . startup.sh
-        remove_Permisiion
-        exit
+        exit 0
     fi
 } 
 
